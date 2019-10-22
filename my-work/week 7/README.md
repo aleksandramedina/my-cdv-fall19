@@ -11,4 +11,4 @@ Here are some of the more interesting datasets I found and could consider workin
 
 [[School dress Codes]](https://pudding.cool/2019/02/dress-code-sexualization/) This seems like an interesting topic to research and see the social changes that go along with sexualizing how young girls dress, however, I'm not sure how much quantifiable information I could get out of this data set.
 
-[[FRIENDS]] (https://thelittledataset.com/2015/01/20/the-one-with-all-the-quantifiable-friendships/) This might be my favorite data set yet & one of my favorite shows to watch, when I'm feeling down. :)
+[[FRIENDS]](https://thelittledataset.com/2015/01/20/the-one-with-all-the-quantifiable-friendships/) This might be my favorite data set yet & one of my favorite shows to watch, when I'm feeling down. :)
