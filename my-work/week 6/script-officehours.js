@@ -72,69 +72,58 @@ function gotData(incomingData){
 
   //data to visualize
   let step = 140;
-  drawViz();
 
-  // setTimeout(function(){
-  //   step=200;
-  //   drawViz();
-  // }, 4000);
+  let data = getStep(incomingData, step);
+  console.log("data", data);
+
+
+
+  let selection = vizgroup.selectAll(".datagroup").data(data);
+  let enteringElements = selection.enter();
+  let exitingElements = selection.exit();
+
+  console.log(enteringElements);
+  let enteringDataGroups = enteringElements.append("g").attr("class","datagroup");
+  enteringDataGroups.append("circle").attr("r", 5);
+
+  enteringDataGroups.attr("transform", function(d, i){
+    return "translate("+ xScale(d.x) +","+ yScale(d.y) +")"
+  });
+
 
   setInterval(function(){
-    step+= 5;
+
+    step = step + 10;
+    console.log("i am back, the data is still:", data);
+    data = getStep(incomingData, step);
+
     drawViz();
-  }, 200);
+
+
+
+  }, 2000);
 
   function drawViz(){
-    console.log("drawViz runs");
+    selection = vizgroup.selectAll(".datagroup").data(data);
+    enteringElements = selection.enter();
+    exitingElements = selection.exit();
 
-    let data = getStep(incomingData, step);
-    console.log(data);
-    //d3.shuffle(data);
-    //console.log(data);
+    xDomain = d3.extent(data, function(datapoint){
+      return datapoint.x;
+    });
+    xScale.domain(xDomain);
+    xAxis = d3.axisBottom(xScale);
+    xAxisGroup.transition().call(xAxis);
 
-    let datagroups = vizgroup.selectAll(".datagroup").data(data, function(d){
-      return d.name;
+    console.log("fullltable", selection);
+    console.log("entering stuff", enteringElements);
+    console.log("exiting stuff", exitingElements);
+
+    selection.transition().duration(100).attr("transform", function(d, i){
+      return "translate("+ xScale(d.x) +","+ yScale(d.y) +")"
     });
 
-    let enteringDataGroup = datagroups.enter()
-      .append("g")
-      .attr("class", "datagroup")
-    ;
-    enteringDataGroup.append("circle")
-        .attr("r", 5)
-        .attr("fill", "white")
-    ;
-    enteringDataGroup.append("text")
-        .text(function(d,i){
-          console.log(d);
-          return d.name;
-        })
-        .attr("x", 10)
-        .attr("y", 5)
-        .attr("fill", "white")
-        .attr("font-family", "Helvetica")
-
-        ;
-
-    enteringDataGroup.attr("transform", function(d, i){
-      return "translate("+ xScale(d.x) + ", " + yScale(d.y) + ")"
-    });
-
-    datagroups.attr("transform", function(d, i){
-      return "translate("+ xScale(d.x) + ", " + yScale(d.y) + ")"
-    });
-
-
-    datagroups.transition().attr("transform", function(d, i){
-      return "translate("+ xScale(d.x) + ", " + yScale(d.y) + ")"
-    });
   }
-
-
-
-
-
-
 
 
 

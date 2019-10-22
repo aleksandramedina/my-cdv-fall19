@@ -6,9 +6,11 @@ let datafile = "data.json";
 
 // function to retrieve only the data points
 // belonging to one step in time:
-function getStep(data, step){
+
+
+function getName(data, name){
   return data.filter(function(datapoint){
-    if(datapoint.step == step){
+    if(datapoint.name == name){
       return true;
     }else{
       return false;
@@ -31,7 +33,7 @@ function gotData(incomingData){
   // checking out our data
   console.log(incomingData);
   // testing the filter function defined above
-  console.log(getStep(incomingData, 0));
+  console.log(getName(incomingData));
 
   let xDomain = d3.extent(incomingData, function(datapoint){
     return datapoint.x;
@@ -70,79 +72,35 @@ function gotData(incomingData){
   // group that contains everything to do with our graph (aka the actual shapes)
   let vizgroup = viz.append("g").attr("class", "vizgroup");
 
+drawViz();
+
+function drawViz (name){
   //data to visualize
-  let step = 140;
-  drawViz();
-
-  // setTimeout(function(){
-  //   step=200;
-  //   drawViz();
-  // }, 4000);
-
-  setInterval(function(){
-    step+= 5;
-    drawViz();
-  }, 200);
-
-  function drawViz(){
-    console.log("drawViz runs");
-
-    let data = getStep(incomingData, step);
-    console.log(data);
-    //d3.shuffle(data);
-    //console.log(data);
-
-    let datagroups = vizgroup.selectAll(".datagroup").data(data, function(d){
-      return d.name;
-    });
-
-    let enteringDataGroup = datagroups.enter()
-      .append("g")
-      .attr("class", "datagroup")
-    ;
-    enteringDataGroup.append("circle")
-        .attr("r", 5)
-        .attr("fill", "white")
-    ;
-    enteringDataGroup.append("text")
-        .text(function(d,i){
-          console.log(d);
-          return d.name;
-        })
-        .attr("x", 10)
-        .attr("y", 5)
-        .attr("fill", "white")
-        .attr("font-family", "Helvetica")
-
-        ;
-
-    enteringDataGroup.attr("transform", function(d, i){
-      return "translate("+ xScale(d.x) + ", " + yScale(d.y) + ")"
-    });
-
-    datagroups.attr("transform", function(d, i){
-      return "translate("+ xScale(d.x) + ", " + yScale(d.y) + ")"
-    });
+  let data = getName(incomingData, name);
+      console.log("data", data);
 
 
-    datagroups.transition().attr("transform", function(d, i){
-      return "translate("+ xScale(d.x) + ", " + yScale(d.y) + ")"
-    });
-  }
+  let selection = vizgroup.selectAll(".datagroup").data(data);
+  let enteringElements = selection.enter();
+  let exitingElements = selection.exit();
 
+  console.log(enteringElements);
+  let enteringDataGroups = enteringElements.append("g").attr("class","datagroup");
+  enteringDataGroups.append("circle").attr("r", 5);
 
+  enteringDataGroups.attr("transform", function(d, i){
+    return "translate("+ xScale(d.x) +","+ yScale(d.y) +")"
 
-
-
-
-
-
-
-
+  });
+enteringDataGroups.exit().remove();
 
 }
 
 
+document.getElementById('button1').addEventListener("click", function(){drawViz('A')});
+document.getElementById('button2').addEventListener("click", function(){drawViz('B')});
+document.getElementById('button3').addEventListener("click", function(){drawViz('C')});
+}
 
 
 
