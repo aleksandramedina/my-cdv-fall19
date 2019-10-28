@@ -18,6 +18,8 @@ The dataset includes:
 
 *note*: this could be an interesting project, where my online identity and real-life identity could be compared. I tried downloading the tool to see all the information Facebook *knows* about me, but it doesn't work anymore (URL not found). I also tried downloading the Data Selfie tool, but that one seems to be taken down as well. Maybe I could do some data scraping myself? I think this might be a worthwhile project because, even though, it's based on my data, it would be relevant for almost anyone, who uses Facebook and is at least somewhat aware of data privacy issues.
 
+>The general idea would be to use the data that Facebook *knows* about me, and recreate my life story. Then, for comparison, I could pinpoint, where Facebook was wrong, where it remembers better than I do, and where it was factually correct (and I remember well enough to confirm); and then draw conclusions on who Facebook thinks I am and what I like. Maybe an interesting visualization might be of the information I willingly gave Facebook vs the information I didn't give Facebook (or wasn't aware I was sharing this information with Facebook, e.g., information from my friend list or third-party applications).
+
 [[Dogs of New York]](http://a816-dohbesp.nyc.gov/IndicatorPublic/dognames/) I LOVE DOGS!
 
 *note*: as much as I do love dogs, this dataset probably doesn't really give me a lot to work with.
