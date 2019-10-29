@@ -4,8 +4,8 @@ Here I will post all of my work for my <b>Fall 2019 Critical Data & Visualizatio
 
 
 <b>Currently working on:</b>👩🏼‍💻
-- [ ] Week 7 Lab
 - [ ] Final Project
+- [x] Week 7 Lab
 - [x] Week 6 Lab
 - [x] Data Zine Project on Compliments
 - [x] Presentation "Predictions & Uncertainty"

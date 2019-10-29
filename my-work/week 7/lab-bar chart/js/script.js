@@ -173,22 +173,6 @@ dataGroups
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // binding functions to the buttons on the page
 // the functions we use to do the actual work are defined in dataManager.js
 function add(){
@@ -317,7 +301,7 @@ function add(){
           })
             .attr("fill", "pink")
             .transition()
-            .duration(5000)
+            .duration(1000)
             .delay(1000)
             .attr("width", function(){
               return xScale.bandwidth();
@@ -328,47 +312,303 @@ function add(){
             .attr("height", function(d, i){
               return yScale(d.value);
             })
-            .attr("fill", "black")
             // .remove()
          ;
          // works, but looks boring! let's transition from no height
          // at all to the actual height and from a different color towards
          // black.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
 
 document.getElementById("buttonA").addEventListener("click", add);
 
+
+
+
+
+
 function remove(){
   removeDatapoints(1);
+
+    console.log("new data", data)
+
+    allNames = data.map(function(d){return d.key});
+    xScale.domain(allNames);
+
+    xAxis = d3.axisBottom(xScale);
+    xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;});
+    xAxisGroup.transition().duration(1000).call(xAxis).selectAll("text").attr("font-size", 18);
+
+    yMax = d3.max(data, function(d){return d.value});
+    yDomain = [0, yMax+yMax*0.1];
+    yScale.domain(yDomain);
+
+    console.log("new data", data)
+    theSituation2 = graphGroup.selectAll(".datapoint").data(data);
+    console.log("the REMOVING NEW full situation:", theSituation2);
+
+    exitingElements2 = theSituation2.exit();
+    theSituation2.transition().duration(1000).attr("transform", function(d, i){
+      return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+    });
+
+    theSituation2.exit("rect")
+      .transition()
+      .duration(200)
+      .remove()
+      ;
+
+    theSituation2.select()
+      .attr("transform", function(d, i){
+        return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+      });
+
+    graphGroup.selectAll(".datapoint rect")
+      .transition()
+      .duration(500)
+      .attr("width", function(){
+          return xScale.bandwidth();
+        })
+      .attr("y", function(d,i){
+        return 0;
+      })
+      .attr("height", function(d,i){
+        return 0;
+      })
+      .attr("fill", "black")
+      .transition()
+      .duration(1000)
+      .delay(1000)
+      .attr("width", function(){
+        return xScale.bandwidth();
+      })
+       .attr("y", function(d,i){
+        return -yScale(d.value);
+      })
+      .attr("height", function(d, i){
+        return yScale(d.value);
+      })
+    ;
+
+    console.log(graphGroup.selectAll(".datapoint"));
+
+
+
+
+
 }
 document.getElementById("buttonB").addEventListener("click", remove);
 
+
+
 function removeAndAdd(){
   removeAndAddDatapoints(1,1);
+    add(1);
+    setTimeout(function(){
+      remove();
+    }, 2000);
+
 }
+
 document.getElementById("buttonC").addEventListener("click", removeAndAdd);
+
 
 function sortData(){
   sortDatapoints();
+
+
+  console.log("new data", data)
+
+
+  allNames = data.map(function(d){return d.key});
+
+  xScale.domain(allNames);
+
+  xAxis = d3.axisBottom(xScale);
+  xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;});
+  xAxisGroup.transition().duration(1000).call(xAxis).selectAll("text").attr("font-size", 18);
+
+
+  yMax = d3.max(data, function(d){return d.value});
+  yDomain = [0, yMax+yMax*0.1];
+  yScale.domain(yDomain);
+
+
+
+  console.log("new sorted data", data)
+
+  theSituation3 = graphGroup.selectAll(".datapoint").data(data);
+
+  console.log("the SORTED NEW full situation:", theSituation);
+
+  enteringElements3 = theSituation3.enter();
+
+  exitingElements3 = theSituation3.exit();
+
+  theSituation3.transition().duration(1000).attr("transform", function(d, i){
+    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+  });
+
+  theSituation3.select("rect")
+   .transition()
+   .delay(1000)
+   .duration(200)
+   .attr("width", function(){
+      return xScale.bandwidth();
+   })
+   .attr("y", function(d,i){
+     return -yScale(d.value);
+   })
+   .attr("height", function(d, i){
+     return yScale(d.value);
+   })
+  ;
+
+  let incomingDataGroups3 = enteringElements3
+    .append("g")
+      .classed("datapoint", true)
+  ;
+
+  incomingDataGroups3.attr("transform", function(d, i){
+    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+  });
+
+
 }
+
+
 document.getElementById("buttonD").addEventListener("click", sortData);
+
+
 
 function shuffleData(){
   shuffleDatapoints();
+
+
+  console.log("new shuffled data", data)
+
+
+  allNames = data.map(function(d){return d.key});
+
+  xScale.domain(allNames);
+
+  xAxis = d3.axisBottom(xScale);
+  xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;});
+  xAxisGroup.transition().duration(1000).call(xAxis).selectAll("text").attr("font-size", 18);
+
+  yMax = d3.max(data, function(d){return d.value});
+  yDomain = [0, yMax+yMax*0.1];
+  yScale.domain(yDomain);
+
+  console.log("new data", data)
+
+  theSituation4 = graphGroup.selectAll(".datapoint").data(data);
+  console.log("the SHUFFLED NEW full situation:", theSituation4);
+
+  enteringElements4 = theSituation4.enter();
+  exitingElements4 = theSituation4.exit();
+
+
+  theSituation4.transition().duration(1000).attr("transform", function(d, i){
+    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+  });
+
+  theSituation4.select("rect")
+   .transition()
+   .delay(2000)
+   .duration(200)
+   .attr("width", function(){
+      return xScale.bandwidth();
+   })
+   .attr("y", function(d,i){
+     return -yScale(d.value);
+   })
+   .attr("height", function(d, i){
+     return yScale(d.value);
+   })
+  ;
+
+  let incomingDataGroups4 = enteringElements4
+    .append("g")
+      .classed("datapoint", true)
+  ;
+
+  incomingDataGroups4.attr("transform", function(d, i){
+    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+  });
+
 }
-document.getElementById("buttonE").addEventListener("click", sortData);
+document.getElementById("buttonE").addEventListener("click", shuffleData);
+
+
+function surprise (){
+  shuffleDatapoints();
+
+
+  console.log("new data", data)
+
+  allNames = data.map(function(d){return d.key});
+  xScale.domain(allNames);
+
+  xAxis = d3.axisBottom(xScale); //we adjust this because it uses the new xScale
+  xAxis.tickFormat(d=>{return data.filter(dd=>dd.key==d)[0].name;}); // we adjust this because it uses the new data
+  xAxisGroup.transition().duration(1000).call(xAxis).selectAll("text").attr("font-size", 18); // we adjust this to bring the new axis onto the page
+
+  yMax = d3.max(data, function(d){return d.value});
+  yDomain = [0, yMax+yMax*0.1];
+  yScale.domain(yDomain);
+
+  console.log("new data", data)
+  theSituation6 = graphGroup.selectAll(".datapoint").data(data);
+  console.log("the SURPRISE NEW full situation:", theSituation6);
+
+
+  theSituation.transition().duration(1000).attr("transform", function(d, i){
+    return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+  });
+
+
+  theSituation.select()
+    .attr("transform", function(d, i){
+      return "translate("+ xScale(d.key)+ "," + (h - padding) + ")"
+    });
+
+  graphGroup.selectAll(".datapoint rect")
+    .transition()
+    .duration(500)
+    .attr("width", function(){
+        return xScale.bandwidth();
+      })
+    .attr("y", function(d,i){
+      return 0;
+    })
+    .attr("height", function(d,i){
+      return 0;
+    })
+    .style("fill",function() {
+      return "hsl(" + Math.random() * 360 + ",100%,50%)";
+    })
+    .transition()
+    .ease(d3.easeBounceIn)
+    .duration(1000)
+    .delay(1000)
+    .attr("width", function(){
+      return xScale.bandwidth();
+    })
+     .attr("y", function(d,i){
+       return -yScale(d.value);
+    })
+    .attr("height", function(d, i){
+      return yScale(d.value);
+    })
+
+  ;
+
+  console.log(graphGroup.selectAll(".datapoint"));
+
+
+
+}
+
+document.getElementById("buttonF").addEventListener("click", surprise);
