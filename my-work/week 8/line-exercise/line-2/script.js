@@ -27,21 +27,29 @@ function gotData(incomingData){
 
   // we can use a  time scale because our data expresses
   // years in the form of JS date objects
-  let xDomain = d3.extent(dataCHN, function(d){ return d.year });
-  let xScale = d3.scaleTime().domain(xDomain).range([xpadding, w-xpadding]);
-  let xAxis = d3.axisBottom(xScale);
+  let chnxDomain = d3.extent(dataCHN, function(d){ return d.year });
+  let usaxDomain = d3.extent(dataUSA, function(d){return d.year});
+  let chnxScale = d3.scaleTime().domain(chnxDomain).range([xpadding, w-xpadding]);
+  let usaxScale = d3.scaleTime().domain(usaxDomain).range([xpadding, w-xpadding]);
+  let xAxis = d3.axisBottom(chnxScale);
   let xAxisGroup = viz.append("g")
       .attr("class", "xaxisgroup")
       .attr("transform", "translate(0,"+(h-ypadding)+")")
   ;
   xAxisGroup.call(xAxis);
 
-  let yMax = d3.max(dataCHN, function(d){
+  let chnyMax = d3.max(dataCHN, function(d){
     return d.birthsPerThousand;
   })
-  let yDomain = [0, yMax];
-  let yScale = d3.scaleLinear().domain(yDomain).range([h-ypadding, ypadding]);
-  let yAxis = d3.axisLeft(yScale);
+  let usayMax = d3.max(dataUSA, function(d){
+    return d.birthsPerThousand;
+  })
+
+  let chnyDomain = [0, chnyMax];
+  let usayDomain = [0, usayMax];
+  let chnyScale = d3.scaleLinear().domain(chnyDomain).range([h-ypadding, ypadding]);
+  let usayScale = d3.scaleLinear().domain(usayDomain).range([h-ypadding, ypadding]);
+  let yAxis = d3.axisLeft(chnyScale);
   let yAxisGroup = viz.append("g")
       .attr("class", "yaxisgroup")
       .attr("transform", "translate("+(xpadding/2)+",0)")
@@ -49,37 +57,59 @@ function gotData(incomingData){
   yAxisGroup.call(yAxis);
 
 
-function getX (d){
-  return xScale(d.year);
+function usagetX (d){
+  return usaxScale(d.year);
 }
-console.log (getX);
 
-function getY (d){
-  return yScale(d.birthsPerThousand);
+function usagetY (d){
+  return usayScale(d.birthsPerThousand);
 }
-console.log (getY);
 
-let lineMaker = d3.line()
-                  .x(getX)
-                  .y(getY)
+
+function chngetX(d){
+  return chnxScale(d.year);
+}
+
+function chngetY (d){
+  return chnyScale(d.birthsPerThousand);
+}
+
+
+let lineMakerUSA = d3.line()
+                  .x(usagetX)
+                  .y(usagetY)
+      ;
+
+let lineMakerCHN = d3.line()
+                  .x(chngetX)
+                  .y(chngetY)
       ;
 
 let theSituationUSA = viz.datum(dataUSA)
 let theSituationCHN = viz.datum(dataCHN)
 
+function usa(d) {
 theSituationUSA.append("path")
-            .attr("d", lineMaker)
+            .attr("d", lineMakerUSA)
             .attr("fill", "none")
             .attr("stroke", "blue")
             ;
 
+        console.log ("This is USA data");
+          }
+
+function chn(d){
 theSituationCHN.append("path")
-            .attr("d", lineMaker)
+            .attr("d", lineMakerCHN)
             .attr("fill", "none")
             .attr("stroke", "gold")
             ;
 
+        console.log ("This is China data")
+          }
 
+document.getElementById("buttonA").addEventListener("click", usa);
+document.getElementById("buttonB").addEventListener("click", chn);
 // function that turns all datapoints year values
 // into JS date objects in the very beginning
 // so that WE DON'T HAVE TO DEAL WITH IT LATER
