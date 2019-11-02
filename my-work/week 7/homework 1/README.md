@@ -2,6 +2,57 @@
 
 Here are some of the more interesting datasets I found and could consider working on for my final project:
 
+<b>I will be using this dataset for my final project: </b>[[Women, Business and the Law]](https://wbl.worldbank.org) A thorough dataset spanning 2009-2018 rating legal gender discrimination in the world. The dataset includes:
+* country name & code
+* year
+* region
+* income level
+* WBL index (the total score given to a country for its laws regarding gender equality, 100 being the highest score representing complete gender equality)
+* going places - examines constraints on freedom of movement
+  * Can a woman apply for a passport in the same way as a man?
+  * Can a woman legally travel outside the country in the same way as a man?
+  * Can a woman legally travel outside her home in the same way as a man?
+  * Can a woman legally choose where to live in the same way as a man?
+* starting a job - analyzes laws affecting a woman's decision to work
+  * Can a woman get a job or pursue a trade or profession in the same way as a man?
+  * Does the law mandate nondiscrimination based on gender in employment?
+  * Is there legislation on sexual harassment in employment?
+  * Are there criminal penalties or civil remedies for sexual harassment in employment?
+* getting paid - measures laws and regulations affecting women’s pay
+  * Does the law mandate equal remuneration for work of equal value?
+  * Can women work the same night hours as men?
+  * Can women work in jobs deemed hazardous, arduous or morally inappropriate in the same way as men?
+  * Are women able to work in the same industries as men?
+* getting married - assesses legal constraints related to marriage
+  * Is a married woman not legally required to obey her husband?
+  * Can a woman be head of household or head of family in the same way as a man?
+  * Is there domestic violence legislation?
+  * Can a woman obtain a judgment of divorce in the same way as a man?
+  * Do women have the same rights to remarry as men?
+* having children - examines laws affecting women’s work after having children
+  * Is there paid leave of at least 14 weeks available to women?
+  * Does the government pay 100% of maternity leave benefits, or parental leave benefits (where maternity leave is unavailable)?
+  * Is there paid paternity leave?
+  * Is there paid parental leave?
+  * Is dismissal of pregnant workers prohibited?
+* running a business - analyzes constraints to women starting and running businesses
+  * Can a woman legally sign a contract in the same way as a man?
+  * Can a woman legally register a business in the same way as a  man?
+  * Can a  woman legally open a bank account in the same way as a man?
+  * Does the law prohibit discrimination by creditors on the basis of sex or gender?
+* managing assets - considers gender differences in property and inheritance
+  * Do men and married women have equal ownership rights to property?
+  * Do sons and daughters have equal rights to inherit assets from their parents?
+  * Do female and male surviving spouses have equal rights to inherit assets?
+  * Does the law grant spouses equal administrative authority over assets during marriage?
+  * Does the law provide for the valuation of nonmonetary contributions?
+* getting a pension - assesses laws affecting the size of a woman’s pension
+  * Are the ages at which men and women can retire with full pension benefits equal?
+  * Are the ages at which men and women can retire with partial pension benefits equal?
+  * Is the mandatory retirement age for men and women equal?
+  * Does the law establish explicit pension care credits for periods of childcare?
+
+
 [[How The Internet Talks]](https://projects.fivethirtyeight.com/reddit-ngram/?keyword=lol.win.omg.cute.fail.wtf&start=20071015&end=20170731&smoothing=10) This could be interesting since I could analyze the trends throughout the years in people's interests, and how positive/ negative is the information people post online.
 The dataset includes:
 * count - the amount of times this phrase has appeared
