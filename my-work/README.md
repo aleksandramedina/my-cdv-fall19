@@ -4,7 +4,7 @@ Here I will post all of my work for my <b>Fall 2019 Critical Data & Visualizatio
 
 
 <b>Currently working on:</b>👩🏼‍💻
-- [ ] Choosing the perfect data set for my final project
+- [x] Choosing the perfect data set for my final project
 - [x] Week 8 in-class coding exercise
 - [ ] Final Project
 - [x] Week 7 Lab
