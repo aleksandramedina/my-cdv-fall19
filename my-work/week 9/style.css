@@ -1,0 +1,15 @@
+#buttons{
+  margin: auto;
+  background-color: white;
+  color: black;
+  border: none;
+  text-align: center;
+  display: flex;
+
+}
+
+.button{
+  border: 1px solid #000000;
+  margin: 25px;
+  padding: 0px 10px;
+}
