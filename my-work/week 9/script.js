@@ -71,8 +71,7 @@ console.log(year2009.length);
 console.log(year2018.length);
 
 
-
-
+function visualizeyear2009(){
 let datagroups1 = viz.selectAll(".datagroup1").data(yeses2009).enter()
   .append("g")
     .classed("datagroup1", true)
@@ -82,19 +81,51 @@ let datagroups2 = viz.selectAll(".datagroup2").data(noes2009).enter()
     .classed("datagroup2", true)
 
 let scoresYes2009 = datagroups1.append("rect")
-    .attr("x", function(d,i){return 10*i})
+    .attr("x", 30)
     .attr("y", 200)
-    .attr("width", 5)
-    .attr("height", 200)
+    .attr("width", 50)
+    .attr("height", yeses2009.length*10)
     .attr("fill", 'green')
 
 let scoresNo2009 = datagroups2.append("rect")
-    .attr("x", function(d,i){return 10*i})
-    .attr("y", 400)
-    .attr("width", 5)
-    .attr("height", 200)
+    .attr("x", 100)
+    .attr("y", 200)
+    .attr("width", 50)
+    .attr("height", noes2009.length*10)
     .attr("fill", 'red')
 
 }
+document.getElementById("buttonA").addEventListener("click", visualizeyear2009);
+
+
+
+function visualizeyear2018(){
+
+let datagroups3 = viz.selectAll(".datagroup3").data(yeses2018).enter()
+  .append("g")
+    .classed("datagroup3", true)
+
+let datagroups4 = viz.selectAll(".datagroup4").data(noes2018).enter()
+  .append("g")
+    .classed("datagroup4", true)
+
+let scoresYes2018 = datagroups3.append("rect")
+    .attr("x", 170)
+    .attr("y", 200)
+    .attr("width", 50)
+    .attr("height", yeses2018.length*10)
+    .attr("fill", 'green')
+
+let scoresNo2018 = datagroups4.append("rect")
+    .attr("x", 240)
+    .attr("y", 200)
+    .attr("width", 50)
+    .attr("height", noes2018.length*10)
+    .attr("fill", 'red')
+
+}
+document.getElementById("buttonB").addEventListener("click", visualizeyear2018);
+}
+
 
 d3.json("data.json").then(gotData);
