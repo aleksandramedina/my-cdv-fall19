@@ -45,18 +45,6 @@ function gotData(incomingData){
   })
 
 
-  // incomingData.forEach((country) => {
-  //   let questionOne = country.e1
-  //   let questionTwo = country.e2
-  //
-  //   if (questionOne == 'Yes') {
-  //     yeses.push(questionOne);
-  //   } else if (questionOne == 'No') {
-  //     noes.push(questionOne);
-  //   }
-  // })
-
-  // console.log(yeses, noes);
 console.log ('in 2009 countries that scored YES on Q1:')
 console.log (yeses2009.length);
 console.log ('in 2009 countries that scored NO on Q1:')
@@ -71,7 +59,9 @@ console.log(year2009.length);
 console.log(year2018.length);
 
 
+
 function visualizeyear2009(){
+
 let datagroups1 = viz.selectAll(".datagroup1").data(yeses2009).enter()
   .append("g")
     .classed("datagroup1", true)
@@ -80,7 +70,10 @@ let datagroups2 = viz.selectAll(".datagroup2").data(noes2009).enter()
   .append("g")
     .classed("datagroup2", true)
 
+
 let scoresYes2009 = datagroups1.append("rect")
+    .transition()
+    .duration(500)
     .attr("x", 30)
     .attr("y", 200)
     .attr("width", 50)
@@ -88,6 +81,8 @@ let scoresYes2009 = datagroups1.append("rect")
     .attr("fill", 'green')
 
 let scoresNo2009 = datagroups2.append("rect")
+.transition()
+.duration(500)
     .attr("x", 100)
     .attr("y", 200)
     .attr("width", 50)
@@ -110,13 +105,18 @@ let datagroups4 = viz.selectAll(".datagroup4").data(noes2018).enter()
     .classed("datagroup4", true)
 
 let scoresYes2018 = datagroups3.append("rect")
+    .transition()
+    .duration(500)
     .attr("x", 170)
     .attr("y", 200)
     .attr("width", 50)
     .attr("height", yeses2018.length*10)
     .attr("fill", 'green')
 
+
 let scoresNo2018 = datagroups4.append("rect")
+    .transition()
+    .duration(500)
     .attr("x", 240)
     .attr("y", 200)
     .attr("width", 50)
