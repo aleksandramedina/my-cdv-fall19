@@ -11,7 +11,11 @@ let viz = d3.select("#container").append("svg")
 //
 //
 // // IMPORT DATA
- d3.json("sweden.geojson").then(function(geoData){
+ // d3.json("somecountries.json").then(function(geoData){
+ d3.json("old-sweden-file.json").then(function(geoData){
+
+   geoData.features.geometry.coordinates = [[geoData.features.geometry.coordinates]];
+   geoData.features = [geoData.features];
 //
 //   // PRINT DATA
   console.log(geoData);
@@ -22,7 +26,7 @@ let viz = d3.select("#container").append("svg")
 //   let yDomain = d3.extent(incomingData, function(d){ return Number(d.birthsPerThousand); })
 //   let yScale = d3.scaleLinear().domain(yDomain).range([h-padding,padding]);
 //
-let projection = d3.geoEquirectangular()
+let projection = d3.geoMercator()
     .center([24.55, 56.88])
     .translate([w/2, h/2])
     .fitExtent([ [0,0], [w, h] ], geoData)
@@ -50,10 +54,25 @@ let pathMaker = d3.geoPath(projection);
 //       .attr("stroke-width", 8)
 //   ;
 //
-viz.selectAll("path").data(geoData.coordinates).enter()
-    .append("path")
-    .attr("d", pathMaker)
-    ;
+    viz.selectAll("path").data(geoData.features).enter()
+        .append("path")
+        .attr("d", pathMaker)
+        ;
+
 //
+//     setTimeout(function(){
+//        d3.json("latvia-hq.geojson").then(function(geoData2){
+// console.log(geoData2);
+//          projection.fitExtent([ [0,0], [w, h] ], geoData2)
+//         viz.selectAll("path")
+//           .data(geoData2.features)
+//           .transition()
+//           .duration(3000)
+//           .attr("d", pathMaker)
+//          ;
+//
+//        })
+//     }, 2000);
+// //
 //
 })
