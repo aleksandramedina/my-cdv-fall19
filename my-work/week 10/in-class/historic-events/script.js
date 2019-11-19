@@ -64,7 +64,6 @@ d3.json("monarchs.json").then(function(incomingData){
   ;
 
   let infoText = viz.append("text")
-  // .text("HSJBBKJ")
   .attr("x", w/2)
   .attr("y", padding/2)
   .attr("text-anchor", "middle")
@@ -82,19 +81,7 @@ datagroups
     console.log(d, i);
     let element = d3.select(this);
     element.select("circle").transition().attr("r", 30);
-    // let text = d.event;
     infoText.text(d.event);
-    // datagroups.selectAll("circle").on("mouseover", function(){
-    //
-    // infoText.text(text);
-    // })
-    viz.append("circle")
-      .attr("cx", 100)
-      .attr("cy", 100)
-      .attr("r", 100)
-      .attr("fill", "black")
-      .attr("class", "temp")
-    ;
 
 })
   .on("mouseout", function(){
