@@ -52,7 +52,6 @@ d3.json("monarchs.json").then(function(incomingData){
     .append("g")
       .attr("class", "datagroup")
       .attr("transform", function(d){
-        // console.log(d);
         return "translate("+ xScale(d.date) +","+ (yScale(d.type) + yScale.bandwidth()/2 )+")"
       })
   ;
