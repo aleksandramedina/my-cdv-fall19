@@ -1,4 +1,3 @@
-d3.json("data.json").then(gotData);
 
 let w = 1200;
 let h = 700;
@@ -278,7 +277,7 @@ let descriptionIndex = datagroup2009.append("text")
 }
 
 function visualize2010(){
-let indexes = datagroup2010.append("circle")
+let indexes = datagroup2010.selectAll("circle")
       .transition()
       .ease(d3.easeCubicIn)
       .duration(1000)
