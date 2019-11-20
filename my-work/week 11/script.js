@@ -231,6 +231,10 @@ let datagroup2018 = viz.selectAll(".datagroup2018").data(year2018).enter()
 
 function visualize2009(){
 let indexes = datagroup2009.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -275,6 +279,10 @@ let descriptionIndex = datagroup2009.append("text")
 
 function visualize2010(){
 let indexes = datagroup2010.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -321,6 +329,10 @@ datagroup2010.on("mouseout", function(d,i){
 
 function visualize2011(){
 let indexes = datagroup2011.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -367,6 +379,10 @@ datagroup2011.on("mouseout", function(d,i){
 
 function visualize2012(){
 let indexes = datagroup2012.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -413,6 +429,10 @@ datagroup2012.on("mouseout", function(d,i){
 
 function visualize2013(){
 let indexes = datagroup2013.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -460,6 +480,10 @@ datagroup2013.on("mouseout", function(d,i){
 
 function visualize2014(){
 let indexes = datagroup2014.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -507,6 +531,10 @@ datagroup2014.on("mouseout", function(d,i){
 
 function visualize2015(){
 let indexes = datagroup2015.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -553,6 +581,10 @@ datagroup2015.on("mouseout", function(d,i){
 
 function visualize2016(){
 let indexes = datagroup2016.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -599,6 +631,10 @@ datagroup2016.on("mouseout", function(d,i){
 
 function visualize2017(){
 let indexes = datagroup2017.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
@@ -645,6 +681,10 @@ datagroup2017.on("mouseout", function(d,i){
 
 function visualize2018(){
 let indexes = datagroup2018.append("circle")
+      .transition()
+      .ease(d3.easeCubicIn)
+      .duration(1000)
+      .delay(1000)
       .attr("r", 10)
       .attr("cx", getIndex)
       .attr("cy", getRandomIntInclusive)
