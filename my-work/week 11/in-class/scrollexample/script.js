@@ -14,7 +14,7 @@ let xPadding = 30;
 
 let viz = d3.select("#visualization")
     .append("svg")
-  .style("background-color", "lavender")
+  .style("background-color", "black")
 ;
 // function to adjust viz height dynamically
 // in order to keep the heightRatio at any given
@@ -37,6 +37,8 @@ function getRandomIntInclusive(min, max) {
 
 function gotData(incomingData){
 
+
+
   let xScale = d3.scaleLinear().domain([0,100]).range([xPadding,w-xPadding]);
 
   let xAxis = d3.axisBottom(xScale);
@@ -44,7 +46,8 @@ function gotData(incomingData){
     xAxisGroup.call(xAxis);
 
   let xAxisYPos = h - 30;
-    xAxisGroup.attr("transform", "translate(0, "+ xAxisYPos +")");
+    xAxisGroup.attr("transform", "translate(0, "+ xAxisYPos +")").attr("stroke", "white");
+
 
   //y axis
 
@@ -53,7 +56,7 @@ function gotData(incomingData){
   let yAxis = d3.axisLeft(yScale);
   let yAxisGroup = viz.append("g").attr("class", "yaxis");
     yAxisGroup.call(yAxis);
-    yAxisGroup.attr("transform", "translate(" + xPadding + ", 0)")
+    yAxisGroup.attr("transform", "translate(" + xPadding + ", 0)").attr("stroke", "white");
 
 
   let year2009 = incomingData.filter(function(d){
@@ -101,14 +104,10 @@ d3.select("#textboxes").on("scroll", function(){
   currentBox(function(box){
     console.log(box.id);
 
-    if(box.id=="two" && box.id!=previousSection){
+    if(box.id=="six" && box.id!=previousSection){
       console.log("changing viz");
 
-
-
     visualize2009 ();
-
-
 
 
       previousSection = box.id;

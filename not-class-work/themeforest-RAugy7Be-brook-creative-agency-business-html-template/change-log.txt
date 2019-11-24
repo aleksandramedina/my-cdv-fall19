@@ -1,0 +1,74 @@
+Version: 1.0.10
+Date:    28-10-2019 
+=========================== 
+Added: Add New 1 Homepages (Business 02)
+
+
+Version: 1.0.9
+Date:    17-10-2019 
+=========================== 
+Added: Add RTL Version.
+
+
+Version: 1.0.8
+Date:    10-10-2019 
+=========================== 
+Added: Add New 1 Homepages (Restaurant)
+
+
+
+Version: 1.0.7
+Date:    24-09-2019 
+=========================== 
+Added: Add New 1 Homepages (Christmas)
+
+
+Version: 1.0.6
+Date:    15-09-2019 
+=========================== 
+Added: Add New 1 Homepages (Essential)
+Fixed: Contact Form Issue Fixed
+
+
+
+Version: 1.0.5
+Date:    05-09-2019 
+=========================== 
+Fixed: Revolution Slider Issue Fixed
+
+
+Version: 1.0.4
+Date:    29-08-2019 
+=========================== 
+Update: Speed Optimized
+Fixed: Revolution Slider Responsive Issue Fixed
+
+
+Version: 1.0.3
+Date:    27-08-2019 
+=========================== 
+Added: Add New Audio Player Element
+
+
+
+Version: 1.0.2
+Date:    25-08-2019 
+=========================== 
+Added: Add New Media Player Element
+Added: Add New Scroll Reveal Element
+Added: Add New Lightweight Slider Element
+
+
+
+Version: 1.0.1
+Date:    10-08-2019 
+=========================== 
+Added: Add New Tabs Element
+Fixed: Minor css issue Fix
+Added: Add Animation
+
+
+Version: 1.0.0
+Date:    27-07-2019 
+=========================== 
+Initial Release

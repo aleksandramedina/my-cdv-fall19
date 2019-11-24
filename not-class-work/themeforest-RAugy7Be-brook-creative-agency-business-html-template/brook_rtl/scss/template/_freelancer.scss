@@ -1,0 +1,82 @@
+/* ======================
+Freelancer Area 
+==========================*/
+
+
+.freelancer-wrapper{
+    padding-top: 59px;
+    padding-left: 135px;
+    padding-right: 135px;
+
+    @media #{$laptop-device} {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+
+    @media #{$lg-layout} {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    @media #{$md-layout} {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    @media #{$sm-layout} {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    &.bg_image--27{
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: top 150px center;
+        background-size: auto;
+    }
+
+    .freelancer-left{
+        width: 480px;
+        max-width: 100%;
+
+        @media #{$md-layout} {
+            width: 100%;
+        }
+    }
+
+    .freelancer-right{
+        width: 595px;
+        max-width: 100%;
+        float: left;
+
+        @media #{$md-layout} {
+            width: 100%;
+            float: right;
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,9 @@
 
 body{
   margin:0;
+  font-family: 'Hiragino Kaku Gothic Pro';
+  font-size: 14px;
 }
-
-
 #wrapper{
   display: flex;
 }
@@ -19,22 +19,76 @@ body{
 }
 
 #textboxes {
-  width: 50%;
-  /* border: red 1px solid; */
+  width: 40%;
   height: 100vh;
   overflow: scroll;
 }
 
 .box{
-  margin-bottom: 60vh;
   padding:30px;
   border-top: 1px black solid;
 }
 
+#buttons{
+  margin: auto;
+  color: black;
+  border: none;
+  text-align: center;
+  display: flex;
+
+}
+
+.button{
+  border: 1px solid #000000;
+  margin: 25px;
+  padding: 0px 10px;
+  /* float: left; */
+}
+
+.sidenav {
+  height: 100%;
+  width: 10%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 20px 35px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+  display: block;
+  font-size: 12px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.aboutPage{
+  width: 70%;
+  margin-left: 10%;
+  margin-top: 5%;
+}
 
 
+.homeCentered{
+  text-align: center;
+}
 
+.icons {
+  margin-top: 100px;
+  margin-left: 75px;
+}
 
+img {
+  padding: 20px 20px 20px 20px;
+}
 /* alternative */
 /* starting point for responsive mobile design */
 /*
