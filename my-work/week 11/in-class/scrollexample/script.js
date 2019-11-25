@@ -151,6 +151,65 @@ let year2018 = data.filter(function(d){
   }
 })
 
+
+//FILTER: REGION
+
+let southAsia = year2018.filter(function(d){
+  if (d.region == 'South Asia'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
+let europe = year2018.filter(function(d){
+  if (d.region == 'Europe & Central Asia'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
+let mena = year2018.filter(function(d){
+  if (d.region == 'Middle East & North Africa'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
+let africa = year2018.filter(function(d){
+  if (d.region == 'Sub-Saharan Africa'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
+let caribbean = year2018.filter(function(d){
+  if (d.region == 'Latin America & Caribbean'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
+let oecd = year2018.filter(function(d){
+  if (d.region == 'High income: OECD'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
+let eastAsia = year2018.filter(function(d){
+  if (d.region == 'East Asia & Pacific'){
+    return true;
+  }else{
+    return false;
+  }
+})
+
 //x axis
 
         xPadding = 30;
@@ -195,12 +254,328 @@ dataGroups.append("circle")
 
 
 
+//VISUALIZING THE  AVERAGE INDEX SCORES FOR EVERY COUNTRY BY YEAR
 
 
+                                function visualize2009 (data){
 
-function visualize2009 (data){
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2009);
+                                  console.log ("the NEW full situation: ", theSituation);
 
-  theSituation = graphGroup.selectAll(".datapoint").data(year2009);
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+
+                                function visualize2010 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2010);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+
+                                function visualize2011 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2011);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2012 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2012);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2013 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2013);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2014 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2014);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2015 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2015);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2016 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2016);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2017 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2017);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+                                function visualize2018 (data){
+
+                                  theSituation = graphGroup.selectAll(".datapoint").data(year2018);
+                                  console.log ("the NEW full situation: ", theSituation);
+
+                                  enteringElements = theSituation.enter();
+                                  exitingElements = theSituation.exit();
+
+                                  theSituation.select("circle")
+                                      .attr("r", 10)
+                                      .attr("cx", getIndex)
+                                      .attr("cy", getRandomIntInclusive)
+                                      .attr("fill", getColor)
+                                      .attr("stroke", "black")
+
+
+                                  let exitingDataGroups = exitingElements
+                                      .append("g")
+                                        .classed("datapoint", true)
+                                    ;
+
+                                exitingDataGroups = theSituation.exit();
+
+
+                                }
+
+// VISUALIZE BY REGIONS
+
+function visualizeSouthAsia (data){
+
+  theSituation = graphGroup.selectAll(".datapoint").data(southAsia);
+  console.log ("the NEW full situation: ", theSituation);
+
+  enteringElements = theSituation.enter();
+  exitingElements = theSituation.exit();
+
+  theSituation.select("circle")
+      .attr("r", 10)
+      .attr("cx", getIndex)
+      .attr("cy", getRandomIntInclusive)
+      .attr("fill", getColor)
+      .attr("stroke", "black")
+
+
+  let exitingDataGroups = exitingElements
+      .append("g")
+        .classed("datapoint", true)
+    ;
+
+exitingDataGroups = theSituation.exit();
+
+
+}
+
+function visualizeEurope (data){
+
+  theSituation = graphGroup.selectAll(".datapoint").data(europe);
+  console.log ("the NEW full situation: ", theSituation);
+
+  enteringElements = theSituation.enter();
+  exitingElements = theSituation.exit();
+
+  theSituation.select("circle")
+      .attr("r", 10)
+      .attr("cx", getIndex)
+      .attr("cy", getRandomIntInclusive)
+      .attr("fill", getColor)
+      .attr("stroke", "black")
+
+
+  let exitingDataGroups = exitingElements
+      .append("g")
+        .classed("datapoint", true)
+    ;
+
+exitingDataGroups = theSituation.exit();
+
+
+}
+
+function visualizeMiddleEastNorthAfrica (data){
+
+  theSituation = graphGroup.selectAll(".datapoint").data(mena);
   console.log ("the NEW full situation: ", theSituation);
 
   enteringElements = theSituation.enter();
@@ -225,9 +600,10 @@ exitingDataGroups = theSituation.exit();
 }
 
 
-function visualize2010 (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(year2010);
+function visualizeAfrica (data){
+
+  theSituation = graphGroup.selectAll(".datapoint").data(africa);
   console.log ("the NEW full situation: ", theSituation);
 
   enteringElements = theSituation.enter();
@@ -251,10 +627,9 @@ exitingDataGroups = theSituation.exit();
 
 }
 
+function visualizeCaribbean (data){
 
-function visualize2011 (data){
-
-  theSituation = graphGroup.selectAll(".datapoint").data(year2011);
+  theSituation = graphGroup.selectAll(".datapoint").data(caribbean);
   console.log ("the NEW full situation: ", theSituation);
 
   enteringElements = theSituation.enter();
@@ -278,9 +653,9 @@ exitingDataGroups = theSituation.exit();
 
 }
 
-function visualize2012 (data){
+function visualizeOECD (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(year2012);
+  theSituation = graphGroup.selectAll(".datapoint").data(oecd);
   console.log ("the NEW full situation: ", theSituation);
 
   enteringElements = theSituation.enter();
@@ -304,9 +679,9 @@ exitingDataGroups = theSituation.exit();
 
 }
 
-function visualize2013 (data){
+function visualizeeastAsia (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(year2013);
+  theSituation = graphGroup.selectAll(".datapoint").data(eastAsia);
   console.log ("the NEW full situation: ", theSituation);
 
   enteringElements = theSituation.enter();
@@ -329,148 +704,6 @@ exitingDataGroups = theSituation.exit();
 
 
 }
-
-function visualize2014 (data){
-
-  theSituation = graphGroup.selectAll(".datapoint").data(year2014);
-  console.log ("the NEW full situation: ", theSituation);
-
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
-
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
-
-
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
-
-}
-
-function visualize2015 (data){
-
-  theSituation = graphGroup.selectAll(".datapoint").data(year2015);
-  console.log ("the NEW full situation: ", theSituation);
-
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
-
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
-
-
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
-
-}
-
-function visualize2016 (data){
-
-  theSituation = graphGroup.selectAll(".datapoint").data(year2016);
-  console.log ("the NEW full situation: ", theSituation);
-
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
-
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
-
-
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
-
-}
-
-function visualize2017 (data){
-
-  theSituation = graphGroup.selectAll(".datapoint").data(year2017);
-  console.log ("the NEW full situation: ", theSituation);
-
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
-
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
-
-
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
-
-}
-
-function visualize2018 (data){
-
-  theSituation = graphGroup.selectAll(".datapoint").data(year2018);
-  console.log ("the NEW full situation: ", theSituation);
-
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
-
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
-
-
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 document.getElementById('buttonA').addEventListener("click", visualize2009);
@@ -486,7 +719,13 @@ document.getElementById('buttonJ').addEventListener("click", visualize2018);
 
 
 
-
+document.getElementById('buttonK').addEventListener("click", visualizeSouthAsia);
+document.getElementById('buttonL').addEventListener("click", visualizeEurope);
+document.getElementById('buttonM').addEventListener("click", visualizeMiddleEastNorthAfrica);
+document.getElementById('buttonN').addEventListener("click", visualizeAfrica);
+document.getElementById('buttonO').addEventListener("click", visualizeCaribbean);
+document.getElementById('buttonP').addEventListener("click", visualizeOECD);
+document.getElementById('buttonQ').addEventListener("click", visualizeeastAsia);
 
 
 
@@ -505,6 +744,11 @@ d3.select("#textboxes").on("scroll", function(){
       console.log("changing viz");
 
     visualize2009 ();
+
+
+      previousSection = box.id;
+    }else if (box.id=="seven" && box.id!=previousSection){
+      console.log("changing viz");
 
 
       previousSection = box.id;
