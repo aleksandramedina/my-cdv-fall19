@@ -12,7 +12,7 @@ body{
   /* top: 10vh; */
   /* height: 80vh; */
   width: 50%;
-  /* background-color: lightgrey; */
+  background-color: black;
 }
 #visualization svg{
   width: 100%;
@@ -34,7 +34,7 @@ body{
   color: black;
   border: none;
   text-align: center;
-  display: flex;
+  /* display: flex; */
 
 }
 
@@ -96,6 +96,17 @@ body{
 
 img {
   padding: 20px 20px 20px 20px;
+}
+
+.xaxis text{
+  color: white;
+}
+
+.xaxis path{
+  stroke: white;
+}
+.xaxis line{
+  stroke: white;
 }
 /* alternative */
 /* starting point for responsive mobile design */
