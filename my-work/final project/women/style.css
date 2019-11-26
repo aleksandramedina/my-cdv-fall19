@@ -1,0 +1,143 @@
+
+body{
+  margin:0;
+  font-family: 'Hiragino Kaku Gothic Pro';
+  font-size: 14px;
+}
+#wrapper{
+  display: flex;
+}
+#visualization {
+  position: sticky;
+  /* top: 10vh; */
+  /* height: 80vh; */
+  width: 50%;
+  background-color: black;
+}
+#visualization svg{
+  width: 100%;
+}
+
+#textboxes {
+  width: 40%;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.box{
+  padding:30px;
+  border-top: 1px black solid;
+}
+
+#buttons{
+  margin: auto;
+  color: black;
+  border: none;
+  text-align: center;
+  /* display: flex; */
+
+}
+
+.button{
+  border: 1px solid #000000;
+  margin: 25px;
+  padding: 0px 10px;
+  /* float: left; */
+}
+
+.sidenav {
+  height: 100%;
+  width: 10%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 20px 35px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #818181;
+  display: block;
+  font-size: 12px;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.aboutPage{
+  width: 70%;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+
+.homeCentered{
+  text-align: center;
+}
+
+.categoriesTitle{
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 10%;
+  margin-right: 15%;
+  width: 75%;
+}
+
+.icons {
+  margin-top: 100px;
+  margin-left: 75px;
+}
+
+img {
+  padding: 20px 20px 20px 20px;
+}
+
+.xaxis text{
+  color: white;
+}
+
+.xaxis path{
+  stroke: white;
+}
+.xaxis line{
+  stroke: white;
+}
+/* alternative */
+/* starting point for responsive mobile design */
+/*
+body{
+  margin:0;
+}
+
+
+#wrapper{
+  display: flex;
+  flex-direction: column;
+}
+#visualization {
+  position: sticky;
+  top: 0vh;
+  height: 50vh;
+  width: 100%;
+  background-color: black;
+}
+#visualization svg{
+  width: 100%;
+}
+
+#textboxes {
+  width: 100%;
+  border: red 1px solid;
+  height: 50vh;
+  overflow: scroll;
+}
+
+.box {
+  margin-bottom: 60vh;
+} */
