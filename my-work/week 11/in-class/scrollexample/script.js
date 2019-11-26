@@ -750,6 +750,7 @@ d3.select("#textboxes").on("scroll", function(){
     }else if (box.id=="seven" && box.id!=previousSection){
       console.log("changing viz");
 
+    visualizeSouthAsia ();
 
       previousSection = box.id;
     }
