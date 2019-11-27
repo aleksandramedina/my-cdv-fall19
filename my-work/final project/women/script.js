@@ -25,14 +25,6 @@ let viz = d3.select("#visualization")
 
 adjustVizHeight();
 
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(200);
-  max = Math.floor(650);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-}
-
-
-
 // your script starts here, e.g. load data here.
 
 function gotData(data){
@@ -40,13 +32,7 @@ function gotData(data){
 
 
 
-//preliminary functions
-
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(200);
-  max = Math.floor(650);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-}
+// //preliminary functions
 
 function getIndex(d,i){
   return xScale(d.index);
@@ -246,10 +232,10 @@ let exitingElements = theSituation.enter();
 let dataGroups = enteringElements.append("g").classed("datapoint", true);
 
 dataGroups.append("circle")
-            .attr("r", 10)
+            .attr("r", 7)
             .attr("cx", getIndex)
-            .attr("cy", getRandomIntInclusive)
-            .attr("fill", getColor)
+            .attr("cy", h/2)
+            .attr("fill", "black")
             .attr("stroke", "black")
 
 
@@ -264,21 +250,30 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2009.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2009)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
@@ -291,25 +286,33 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2010.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2010)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
-
 
                                 function visualize2011 (data){
 
@@ -318,21 +321,30 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2011.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2011)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
@@ -344,47 +356,63 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2012.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2012)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
-
+                                  exitingElements.remove();
 
                                 }
 
                                 function visualize2013 (data){
-
                                   theSituation = graphGroup.selectAll(".datapoint").data(year2013);
                                   console.log ("the NEW full situation: ", theSituation);
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2013.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2013)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
@@ -396,21 +424,30 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2014.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2014)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
@@ -422,21 +459,30 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2015.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2015)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
@@ -448,22 +494,30 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2016.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2016)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
-
+                                  exitingElements.remove();
 
                                 }
 
@@ -474,21 +528,30 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2017.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2017)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
 
 
                                 }
@@ -500,21 +563,31 @@ dataGroups.append("circle")
 
                                   enteringElements = theSituation.enter();
                                   exitingElements = theSituation.exit();
+                                  year2018.forEach(d=>{
+                                    d.x = xScale(d.index);
+                                    d.y = h/2
+                                  })
 
-                                  theSituation.select("circle")
-                                      .attr("r", 10)
-                                      .attr("cx", getIndex)
-                                      .attr("cy", getRandomIntInclusive)
+                                  var force = d3.forceSimulation(year2018)
+                                      .force('collide', d3.forceCollide(10))
+                                      .on("tick", tick2)
+                                        ;
+                                  function tick2(){
+
+                                  theSituation.selectAll("circle")
                                       .attr("fill", getColor)
-                                      .attr("stroke", "black")
-
-
-                                  let exitingDataGroups = exitingElements
-                                      .append("g")
-                                        .classed("datapoint", true)
+                                      .attr("stroke", "white")
+                                      .attr("cx", function(d){
+                                        return d.x;
+                                      })
+                                      .attr("cy", function(d){
+                                        return d.y;
+                                      })
                                     ;
+                                  }
 
-                                exitingDataGroups = theSituation.exit();
+                                  exitingElements.remove();
+
 
 
                                 }
@@ -532,7 +605,7 @@ function visualizeSouthAsia (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
@@ -558,7 +631,7 @@ function visualizeEurope (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
@@ -584,7 +657,7 @@ function visualizeMiddleEastNorthAfrica (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
@@ -612,7 +685,7 @@ function visualizeAfrica (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
@@ -638,7 +711,7 @@ function visualizeCaribbean (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
@@ -664,7 +737,7 @@ function visualizeOECD (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
@@ -690,7 +763,7 @@ function visualizeeastAsia (data){
   theSituation.select("circle")
       .attr("r", 10)
       .attr("cx", getIndex)
-      .attr("cy", getRandomIntInclusive)
+      .attr("cy", h/2)
       .attr("fill", getColor)
       .attr("stroke", "black")
 
