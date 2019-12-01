@@ -38,6 +38,8 @@ body{
 
 }
 
+@import "compass/css3";
+
 .button{
   border: 1px solid #000000;
   margin: 25px;
@@ -45,9 +47,14 @@ body{
   /* float: left; */
 }
 
-.button:hover {
+/* .button:active {
   background-color: #ff0000; /* Red */
+
+
+.button:active {
+  background: #ff0000; /* Red */
 }
+
 
 .sidenav {
   height: 100%;

@@ -32,9 +32,7 @@ function gotData(data){
     let sortedByYear = d3.nest().key(d=>d.year).entries(data);
     console.log(sortedByYear);
 
-    data.forEach(d=>{
-      d.wblindex = d.index;
-    })
+
 
 
 // //preliminary functions
@@ -42,6 +40,10 @@ function gotData(data){
 function getIndex(d,i){
   return xScale(d.wblindex);
 }
+
+data.forEach(d=>{
+  d.wblindex = d.index;
+})
 
 function getColor(d,i){
   if (d.income == "Low income"){
@@ -53,7 +55,19 @@ function getColor(d,i){
   }
 }
 
+function axis (){
 
+  xAxisGroup.call(xAxis);
+  yAxisGroup.call(yAxis);
+
+}
+
+// Bind data
+function keyFunction(d){
+  // return a feature of the datapoints that makes them
+  // uniquely identifiable
+  return d.name;
+}
 
 //x axis
 
@@ -63,7 +77,7 @@ function getColor(d,i){
 
   let xAxis = d3.axisBottom(xScale);
   let xAxisGroup = viz.append("g").attr("class", "xaxis");
-  xAxisGroup.call(xAxis);
+
 
   let xAxisYPos = h - 30;
   xAxisGroup.attr("transform", "translate(0, "+ xAxisYPos +")");
@@ -74,8 +88,8 @@ function getColor(d,i){
 
   let yAxis = d3.axisLeft(yScale);
   let yAxisGroup = viz.append("g").attr("class", "yaxis");
-  yAxisGroup.call(yAxis);
   yAxisGroup.attr("transform", "translate(" + xPadding + ", 0)")
+
 
   // console.log("year2009", year2009);
   // // let test = sortedByYear[0]
@@ -233,7 +247,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2009 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2009);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2009, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -250,11 +264,48 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
                                       .attr("stroke", "whtite")
                                     ;
 
+
                                   theSituation.transition()
                                     .attr("transform", function(d){
                                       return "translate("+d.x+", "+d.y+")"
                                     })
                                   ;
+
+                                  let infoText = viz.append("text")
+                                  .attr("x", w/2)
+                                  .attr("y", 150)
+                                  .attr("text-anchor", "middle")
+                                  .attr("fill", "white")
+                                  ;
+
+                                  theSituation
+                                    .on("mouseover", function(d, i){
+                                      let element = d3.select(this);
+                                      element.select("circle").attr("stroke", "yellow");
+                                      infoText.text(d.name + ", " + d.wblindex);
+
+                                  })
+                                    .on("mouseout", function(){
+                                      let element = d3.select(this);
+                                      element.select("circle").attr("stroke", "none");
+                                      infoText.text("");
+
+                                    })
+
+
+                                    enteringGroups
+                                      .on("mouseover", function(d, i){
+                                        let element = d3.select(this);
+                                        element.select("circle").attr("stroke", "yellow");
+                                        infoText.text(d.name + ", " + d.wblindex);
+
+                                    })
+                                      .on("mouseout", function(){
+                                        let element = d3.select(this);
+                                        element.select("circle").attr("stroke", "none");
+                                        infoText.text("");
+
+                                      })
 
                                   let exitingElements = theSituation.exit();
                                   exitingElements.remove();
@@ -263,7 +314,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2010 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2010);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2010, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -279,6 +330,8 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
                                       .attr("fill", getColor)
                                       .attr("stroke", "whtite")
                                     ;
+
+
 
                                   theSituation.transition()
                                     .attr("transform", function(d){
@@ -293,7 +346,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2011 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2011);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2011, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -323,7 +376,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2012 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2012);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2012, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -352,7 +405,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
 
                                 function visualize2013 (){
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2013);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2013, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -382,7 +435,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2014 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2014);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2014, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -412,7 +465,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2015 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2015);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2015, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -442,7 +495,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2016 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2016);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2016, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -471,7 +524,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2017 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2017);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2017, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -493,6 +546,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
                                       return "translate("+d.x+", "+d.y+")"
                                     })
                                   ;
+
 
                                   let exitingElements = theSituation.exit();
                                   exitingElements.remove();
@@ -500,7 +554,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
                                 function visualize2018 (){
 
-                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2018);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2018, keyFunction);
 
                                   console.log ("the NEW full situation: ", theSituation);
 
@@ -522,6 +576,7 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
                                       return "translate("+d.x+", "+d.y+")"
                                     })
                                   ;
+
 
                                   let exitingElements = theSituation.exit();
                                   exitingElements.remove();
@@ -530,9 +585,9 @@ let graphGroup = viz.append("g").classed("graphGroup", true);
 
 // VISUALIZE BY REGIONS
 
-function visualizeSouthAsia (data){
+function visualizeSouthAsia (){
 
-        let theSituation = graphGroup.selectAll(".datapoint").data(southAsia);
+        let theSituation = graphGroup.selectAll(".datapoint").data(southAsia, keyFunction);
 
         console.log ("the NEW full situation: ", theSituation);
 
@@ -549,11 +604,46 @@ function visualizeSouthAsia (data){
             .attr("stroke", "whtite")
           ;
 
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        ;
+
         theSituation.transition()
           .attr("transform", function(d){
             return "translate("+d.x+", "+d.y+")"
           })
         ;
+        theSituation
+          .on("mouseover", function(d, i){
+            let element = d3.select(this);
+            element.select("circle").attr("stroke", "yellow");
+            infoText.text(d.name + ", " + d.wblindex);
+
+        })
+          .on("mouseout", function(){
+            let element = d3.select(this);
+            element.select("circle").attr("stroke", "none");
+            infoText.text("");
+
+          })
+
+
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
+          })
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
 
         let exitingElements = theSituation.exit();
         exitingElements.remove();
@@ -561,9 +651,9 @@ function visualizeSouthAsia (data){
 }
 
 
-function visualizeEurope (data){
+function visualizeEurope (){
 
-        let theSituation = graphGroup.selectAll(".datapoint").data(europe);
+        let theSituation = graphGroup.selectAll(".datapoint").data(europe, keyFunction);
 
         console.log ("the NEW full situation: ", theSituation);
 
@@ -585,6 +675,80 @@ function visualizeEurope (data){
             return "translate("+d.x+", "+d.y+")"
           })
         ;
+
+
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        ;
+
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
+          })
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
+
+}
+
+
+function visualizeMiddleEastNorthAfrica (){
+
+        let theSituation = graphGroup.selectAll(".datapoint").data(mena, keyFunction);
+
+        console.log ("the NEW full situation: ", theSituation);
+
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
+
+
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        ;
+
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
+          })
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
 
         let exitingElements = theSituation.exit();
         exitingElements.remove();
@@ -592,9 +756,10 @@ function visualizeEurope (data){
 }
 
 
-function visualizeMiddleEastNorthAfrica (data){
 
-        let theSituation = graphGroup.selectAll(".datapoint").data(mena);
+function visualizeAfrica (){
+
+        let theSituation = graphGroup.selectAll(".datapoint").data(africa, keyFunction);
 
         console.log ("the NEW full situation: ", theSituation);
 
@@ -616,17 +781,88 @@ function visualizeMiddleEastNorthAfrica (data){
             return "translate("+d.x+", "+d.y+")"
           })
         ;
+
+
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        ;
+
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
+          })
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
+
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
+}
+
+function visualizeCaribbean (){
+
+
+        let theSituation = graphGroup.selectAll(".datapoint").data(caribbean, keyFunction);
+
+        console.log ("the NEW full situation: ", theSituation);
+
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
+
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        ;
+
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
+          })
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
 
         let exitingElements = theSituation.exit();
         exitingElements.remove();
 
 }
 
+function visualizeOECD (){
 
-
-function visualizeAfrica (data){
-
-        let theSituation = graphGroup.selectAll(".datapoint").data(africa);
+        let theSituation = graphGroup.selectAll(".datapoint").data(oecd, keyFunction);
 
         console.log ("the NEW full situation: ", theSituation);
 
@@ -649,74 +885,36 @@ function visualizeAfrica (data){
           })
         ;
 
-        let exitingElements = theSituation.exit();
-        exitingElements.remove();
-}
 
-function visualizeCaribbean (data){
-
-
-        let theSituation = graphGroup.selectAll(".datapoint").data(caribbean);
-
-        console.log ("the NEW full situation: ", theSituation);
-
-        let enteringElements = theSituation.enter();
-        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
-          .attr("transform", function(d){
-            return "translate("+d.x+", "+d.y+")"
-          })
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
         ;
-        //append a circle to new g
-        enteringGroups.append("circle")
-            .attr("r", 5)
-            .attr("fill", getColor)
-            .attr("stroke", "whtite")
-          ;
 
-        theSituation.transition()
-          .attr("transform", function(d){
-            return "translate("+d.x+", "+d.y+")"
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
           })
-        ;
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
 
         let exitingElements = theSituation.exit();
         exitingElements.remove();
 
 }
 
-function visualizeOECD (data){
+function visualizeeastAsia (){
 
-        let theSituation = graphGroup.selectAll(".datapoint").data(oecd);
-
-        console.log ("the NEW full situation: ", theSituation);
-
-        let enteringElements = theSituation.enter();
-        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
-          .attr("transform", function(d){
-            return "translate("+d.x+", "+d.y+")"
-          })
-        ;
-        //append a circle to new g
-        enteringGroups.append("circle")
-            .attr("r", 5)
-            .attr("fill", getColor)
-            .attr("stroke", "whtite")
-          ;
-
-        theSituation.transition()
-          .attr("transform", function(d){
-            return "translate("+d.x+", "+d.y+")"
-          })
-        ;
-
-        let exitingElements = theSituation.exit();
-        exitingElements.remove();
-
-}
-
-function visualizeeastAsia (data){
-
-        let theSituation = graphGroup.selectAll(".datapoint").data(eastAsia);
+        let theSituation = graphGroup.selectAll(".datapoint").data(eastAsia, keyFunction);
 
         console.log ("the NEW full situation: ", theSituation);
 
@@ -733,11 +931,34 @@ function visualizeeastAsia (data){
             .attr("stroke", "whtite")
           ;
 
+        let infoText = viz.append("text")
+        .attr("x", w/2)
+        .attr("y", 150)
+        .attr("text-anchor", "middle")
+        .attr("fill", "white")
+        ;
+
         theSituation.transition()
           .attr("transform", function(d){
             return "translate("+d.x+", "+d.y+")"
           })
         ;
+
+
+
+          enteringGroups
+            .on("mouseover", function(d, i){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "yellow");
+              infoText.text(d.name + ", " + d.wblindex);
+
+          })
+            .on("mouseout", function(){
+              let element = d3.select(this);
+              element.select("circle").attr("stroke", "none");
+              infoText.text("");
+
+            })
 
         let exitingElements = theSituation.exit();
         exitingElements.remove();
@@ -781,6 +1002,7 @@ d3.select("#textboxes").on("scroll", function(){
     if(box.id=="six" && box.id!=previousSection){
       console.log("changing viz");
 
+    axis();
     visualize2009();
 
 
