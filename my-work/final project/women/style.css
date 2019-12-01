@@ -45,6 +45,10 @@ body{
   /* float: left; */
 }
 
+.button:hover {
+  background-color: #ff0000; /* Red */
+}
+
 .sidenav {
   height: 100%;
   width: 10%;

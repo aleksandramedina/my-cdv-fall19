@@ -29,13 +29,18 @@ adjustVizHeight();
 
 function gotData(data){
     console.log(data);
+    let sortedByYear = d3.nest().key(d=>d.year).entries(data);
+    console.log(sortedByYear);
 
+    data.forEach(d=>{
+      d.wblindex = d.index;
+    })
 
 
 // //preliminary functions
 
 function getIndex(d,i){
-  return xScale(d.index);
+  return xScale(d.wblindex);
 }
 
 function getColor(d,i){
@@ -49,626 +54,571 @@ function getColor(d,i){
 }
 
 
-let year2009 = data.filter(function(d){
-  if (d.year == 2009){
-    return true;
-  }else{
-    return false;
-  }
-})
 
-let year2010 = data.filter(function(d){
-  if (d.year == 2010){
-    return true;
-  }else{
-    return false;
-  }
-})
+//x axis
 
+  xPadding = 30;
 
-let year2011 = data.filter(function(d){
-  if (d.year == 2011){
-    return true;
-  }else{
-    return false;
-  }
-})
+  let xScale = d3.scaleLinear().domain([0,100]).range([xPadding,w-xPadding]);
 
+  let xAxis = d3.axisBottom(xScale);
+  let xAxisGroup = viz.append("g").attr("class", "xaxis");
+  xAxisGroup.call(xAxis);
 
-let year2012 = data.filter(function(d){
-  if (d.year == 2012){
-    return true;
-  }else{
-    return false;
-  }
-})
+  let xAxisYPos = h - 30;
+  xAxisGroup.attr("transform", "translate(0, "+ xAxisYPos +")");
+
+//y axis
+
+  let yScale = d3.scaleLinear().domain([]).range([xPadding, h-xPadding]);
+
+  let yAxis = d3.axisLeft(yScale);
+  let yAxisGroup = viz.append("g").attr("class", "yaxis");
+  yAxisGroup.call(yAxis);
+  yAxisGroup.attr("transform", "translate(" + xPadding + ", 0)")
+
+  // console.log("year2009", year2009);
+  // // let test = sortedByYear[0]
+  // let year2009 = sortedByYear[ sortedByYear.findIndex(d=>d.key == "2009") ].values;
+  // console.log("2009?", test);
 
 
-let year2013 = data.filter(function(d){
-  if (d.year == 2013){
-    return true;
-  }else{
-    return false;
-  }
-})
+let year2009 = data.filter(function(d){return d.year == 2009})
+
+    year2009.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2009).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
 
-let year2014 = data.filter(function(d){
-  if (d.year == 2014){
-    return true;
-  }else{
-    return false;
-  }
-})
+let year2010 = data.filter(function(d){return d.year==2010})
+
+    year2010.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2010).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
 
-let year2015 = data.filter(function(d){
-  if (d.year == 2015){
-    return true;
-  }else{
-    return false;
-  }
-})
+let year2011 = data.filter(function(d){return d.year==2011})
+
+    year2011.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2011).force('collide', d3.forceCollide(10)); // simulation changes x and y
+
+let year2012 = data.filter(function(d){return d.year==2012})
+
+    year2012.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2012).force('collide', d3.forceCollide(10)); // simulation changes x and y
+
+
+let year2013 = data.filter(function(d){return d.year==2013})
+
+    year2013.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2013).force('collide', d3.forceCollide(10)); // simulation changes x and y
+
+
+let year2014 = data.filter(function(d){return d.year==2014})
+
+    year2014.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2014).force('collide', d3.forceCollide(10)); // simulation changes x and y
+
+
+let year2015 = data.filter(function(d){return d.year==2015})
+
+    year2015.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2015).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
 
 
-let year2016 = data.filter(function(d){
-  if (d.year == 2016){
-    return true;
-  }else{
-    return false;
-  }
-})
+let year2016 = data.filter(function(d){return d.year==2016})
+
+    year2016.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2016).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
 
-let year2017 = data.filter(function(d){
-  if (d.year == 2017){
-    return true;
-  }else{
-    return false;
-  }
-})
 
-let year2018 = data.filter(function(d){
-  if (d.year == 2018){
-    return true;
-  }else{
-    return false;
-  }
-})
+let year2017 = data.filter(function(d){return d.year==2017})
+
+    year2017.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2017).force('collide', d3.forceCollide(10)); // simulation changes x and y
+
+
+let year2018 = data.filter(function(d){return d.year==2018})
+
+    year2018.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(year2018).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
 
 //FILTER: REGION
 
-let southAsia = year2018.filter(function(d){
-  if (d.region == 'South Asia'){
-    return true;
-  }else{
-    return false;
-  }
-})
+let southAsia = year2018.filter(function(d){return d.region == 'South Asia'})
+    southAsia.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(southAsia).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
-let europe = year2018.filter(function(d){
-  if (d.region == 'Europe & Central Asia'){
-    return true;
-  }else{
-    return false;
-  }
-})
+let europe = year2018.filter(function(d){return d.region == 'Europe & Central Asia'})
+    europe.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(europe).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
-let mena = year2018.filter(function(d){
-  if (d.region == 'Middle East & North Africa'){
-    return true;
-  }else{
-    return false;
-  }
-})
+let mena = year2018.filter(function(d){return d.region == 'Middle East & North Africa'})
+    mena.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(mena).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
-let africa = year2018.filter(function(d){
-  if (d.region == 'Sub-Saharan Africa'){
-    return true;
-  }else{
-    return false;
-  }
-})
+let africa = year2018.filter(function(d){return d.region == 'Sub-Saharan Africa'})
+    africa.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(africa).force('collide', d3.forceCollide(10)); // simulation changes x and y
+    console.log(africa);
 
-let caribbean = year2018.filter(function(d){
-  if (d.region == 'Latin America & Caribbean'){
-    return true;
-  }else{
-    return false;
-  }
-})
+let caribbean = year2018.filter(function(d){return d.region == 'Latin America & Caribbean'})
+    caribbean.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(caribbean).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
-let oecd = year2018.filter(function(d){
-  if (d.region == 'High income: OECD'){
-    return true;
-  }else{
-    return false;
-  }
-})
+let oecd = year2018.filter(function(d){return d.region == 'High income: OECD'})
+    oecd.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(oecd).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
-let eastAsia = year2018.filter(function(d){
-  if (d.region == 'East Asia & Pacific'){
-    return true;
-  }else{
-    return false;
-  }
-})
-
-//x axis
-
-        xPadding = 30;
-
-        let xScale = d3.scaleLinear().domain([0,100]).range([xPadding,w-xPadding]);
-
-        let xAxis = d3.axisBottom(xScale);
-        let xAxisGroup = viz.append("g").attr("class", "xaxis");
-          xAxisGroup.call(xAxis);
-
-        let xAxisYPos = h - 30;
-          xAxisGroup.attr("transform", "translate(0, "+ xAxisYPos +")");
-
-//y axis
-
-        let yScale = d3.scaleLinear().domain([]).range([xPadding, h-xPadding]);
-
-        let yAxis = d3.axisLeft(yScale);
-        let yAxisGroup = viz.append("g").attr("class", "yaxis");
-          yAxisGroup.call(yAxis);
-  yAxisGroup.attr("transform", "translate(" + xPadding + ", 0)")
+let eastAsia = year2018.filter(function(d){return d.region == 'East Asia & Pacific'})
+    eastAsia.forEach(d=>{
+      d.x = xScale(d.wblindex); //initial x
+      d.y = h/2 // initial y
+    });
+    d3.forceSimulation(eastAsia).force('collide', d3.forceCollide(10)); // simulation changes x and y
 
 
 //group to hold the graph
 let graphGroup = viz.append("g").classed("graphGroup", true);
 
-//the tricky part of dealing with the data
-let theSituation = graphGroup.selectAll(".datapoint").data(year2009);
-  console.log("the full situation: ", theSituation);
 
-let enteringElements = theSituation.enter();
-let exitingElements = theSituation.enter();
+                                function visualize2009 (){
 
-let dataGroups = enteringElements.append("g").classed("datapoint", true);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2009);
 
-dataGroups.append("circle")
-            .attr("r", 7)
-            .attr("cx", getIndex)
-            .attr("cy", h/2)
-            .attr("fill", "black")
-            .attr("stroke", "black")
-
-
-
-//VISUALIZING THE  AVERAGE INDEX SCORES FOR EVERY COUNTRY BY YEAR
-
-
-                                function visualize2009 (data){
-
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2009);
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2009.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2009)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
 
-                                function visualize2010 (data){
+                                function visualize2010 (){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2010);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2010);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2010.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2010)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
-                                function visualize2011 (data){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2011);
+                                function visualize2011 (){
+
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2011);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2011.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2011)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
-                                function visualize2012 (data){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2012);
+                                function visualize2012 (){
+
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2012);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2012.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2012)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
                                 }
 
-                                function visualize2013 (data){
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2013);
+
+                                function visualize2013 (){
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2013);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2013.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2013)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
-                                function visualize2014 (data){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2014);
+                                function visualize2014 (){
+
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2014);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2014.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2014)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
-                                function visualize2015 (data){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2015);
+                                function visualize2015 (){
+
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2015);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2015.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2015)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
-                                function visualize2016 (data){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2016);
+                                function visualize2016 (){
+
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2016);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2016.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2016)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
                                 }
 
-                                function visualize2017 (data){
+                                function visualize2017 (){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2017);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2017);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2017.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2017)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
                                 }
 
-                                function visualize2018 (data){
+                                function visualize2018 (){
 
-                                  theSituation = graphGroup.selectAll(".datapoint").data(year2018);
+                                  let theSituation = graphGroup.selectAll(".datapoint").data(year2018);
+
                                   console.log ("the NEW full situation: ", theSituation);
 
-                                  enteringElements = theSituation.enter();
-                                  exitingElements = theSituation.exit();
-                                  year2018.forEach(d=>{
-                                    d.x = xScale(d.index);
-                                    d.y = h/2
-                                  })
-
-                                  var force = d3.forceSimulation(year2018)
-                                      .force('collide', d3.forceCollide(10))
-                                      .on("tick", tick2)
-                                        ;
-                                  function tick2(){
-
-                                  theSituation.selectAll("circle")
+                                  let enteringElements = theSituation.enter();
+                                  let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+                                  //append a circle to new g
+                                  enteringGroups.append("circle")
+                                      .attr("r", 5)
                                       .attr("fill", getColor)
-                                      .attr("stroke", "white")
-                                      .attr("cx", function(d){
-                                        return d.x;
-                                      })
-                                      .attr("cy", function(d){
-                                        return d.y;
-                                      })
+                                      .attr("stroke", "whtite")
                                     ;
-                                  }
 
+                                  theSituation.transition()
+                                    .attr("transform", function(d){
+                                      return "translate("+d.x+", "+d.y+")"
+                                    })
+                                  ;
+
+                                  let exitingElements = theSituation.exit();
                                   exitingElements.remove();
-
-
-
                                 }
+
 
 // VISUALIZE BY REGIONS
 
 function visualizeSouthAsia (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(southAsia);
-  console.log ("the NEW full situation: ", theSituation);
+        let theSituation = graphGroup.selectAll(".datapoint").data(southAsia);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        console.log ("the NEW full situation: ", theSituation);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 
 }
+
 
 function visualizeEurope (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(europe);
-  console.log ("the NEW full situation: ", theSituation);
+        let theSituation = graphGroup.selectAll(".datapoint").data(europe);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        console.log ("the NEW full situation: ", theSituation);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 
 }
 
+
 function visualizeMiddleEastNorthAfrica (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(mena);
-  console.log ("the NEW full situation: ", theSituation);
+        let theSituation = graphGroup.selectAll(".datapoint").data(mena);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        console.log ("the NEW full situation: ", theSituation);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 
 }
 
@@ -676,108 +626,123 @@ exitingDataGroups = theSituation.exit();
 
 function visualizeAfrica (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(africa);
-  console.log ("the NEW full situation: ", theSituation);
+        let theSituation = graphGroup.selectAll(".datapoint").data(africa);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        console.log ("the NEW full situation: ", theSituation);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 }
 
 function visualizeCaribbean (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(caribbean);
-  console.log ("the NEW full situation: ", theSituation);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        let theSituation = graphGroup.selectAll(".datapoint").data(caribbean);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        console.log ("the NEW full situation: ", theSituation);
 
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-exitingDataGroups = theSituation.exit();
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 
 }
 
 function visualizeOECD (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(oecd);
-  console.log ("the NEW full situation: ", theSituation);
+        let theSituation = graphGroup.selectAll(".datapoint").data(oecd);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        console.log ("the NEW full situation: ", theSituation);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 
 }
 
 function visualizeeastAsia (data){
 
-  theSituation = graphGroup.selectAll(".datapoint").data(eastAsia);
-  console.log ("the NEW full situation: ", theSituation);
+        let theSituation = graphGroup.selectAll(".datapoint").data(eastAsia);
 
-  enteringElements = theSituation.enter();
-  exitingElements = theSituation.exit();
+        console.log ("the NEW full situation: ", theSituation);
 
-  theSituation.select("circle")
-      .attr("r", 10)
-      .attr("cx", getIndex)
-      .attr("cy", h/2)
-      .attr("fill", getColor)
-      .attr("stroke", "black")
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+            .attr("stroke", "whtite")
+          ;
 
+        theSituation.transition()
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+        ;
 
-  let exitingDataGroups = exitingElements
-      .append("g")
-        .classed("datapoint", true)
-    ;
-
-exitingDataGroups = theSituation.exit();
-
+        let exitingElements = theSituation.exit();
+        exitingElements.remove();
 
 }
-
 
 document.getElementById('buttonA').addEventListener("click", visualize2009);
 document.getElementById('buttonB').addEventListener("click", visualize2010);
@@ -816,7 +781,7 @@ d3.select("#textboxes").on("scroll", function(){
     if(box.id=="six" && box.id!=previousSection){
       console.log("changing viz");
 
-    visualize2009 ();
+    visualize2009();
 
 
       previousSection = box.id;
