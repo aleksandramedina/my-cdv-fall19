@@ -5,6 +5,7 @@ let heightRatio = 1;
 let padding = 90;
 let xPadding = 30;
 let currYear = 2009;
+let currRegion= "East Asia";
 
 let viz = d3.select("#visualization")
     .append("svg")
@@ -95,12 +96,9 @@ function getIndex(d,i){
   return xScale(d.wblindex);
 }
 
+
 function getColor(d){
-// if (d.name == "Mauritius"){
-//   return "blue"
-// }else {
-//   return "gray"
-// }
+
   if (d.records[2018].income == "Low income"){
     return ("#f2e4e0")
   }else if (d.records[2018].income == "Upper middle income" || d.records[2018].income == "Lower middle income"){
@@ -172,7 +170,6 @@ function showyear(year){
   d3.forceSimulation(sortedByCountry)
     .force('collide', d3.forceCollide(7))
     .force("forceX", d3.forceX(function(d){
-      console.log(d.records[year].wblindex);
       return xScale(d.records[year].wblindex);
     }))
     .force("forceY", d3.forceY(h/2))
@@ -181,20 +178,38 @@ function showyear(year){
   console.log(year + "the button for year has been clicked");
 }
 
-let sortedregion = sortedByCountry.filter(function(d){return d.records[2018].region})
-console.log(sortedregion);
+function showregion(region){
+let currRegion = region;
 
-function showregion(sortedregion){
   d3.forceSimulation(sortedByCountry)
     .force('collide', d3.forceCollide(7))
     .force("forceX", d3.forceX(function(d){
-      return xScale(d.records[2018].wblindex);
-    }))
+        if (d.records[2018].region == currRegion){return xScale(d.records[2018].wblindex);
+        }else {return -400};}
+    ))
     .force("forceY", d3.forceY(h/2))
     .on("tick", updatePositionsAndColor)
-  ;
-  console.log(year + "the button for region has been clicked");
 }
+
+
+// function showregion(region){
+//   d3.forceSimulation(sortedByCountry)
+//     .force('collide', d3.forceCollide(7))
+//     .force("forceX", d3.forceX(function(d){
+//       // look for x location based on region
+//       console.log(d)
+//       console.log("looking for x give " + region)
+//       // if (d.records[2018].region == region){
+//       // return xScale(d.records[2018].wblindex);
+//       // console.log (xScale(d.records[2018].wblindex);
+//       //   }else {return -200}
+//       //     ))
+//   })
+//     .force("forceY", d3.forceY(h/2))
+//     .on("tick", updatePositionsAndColor)
+//   ;
+//   console.log(year + "the button for region has been clicked");
+// }
 
 // showyear(2009);
 // setTimeout(function(){
@@ -236,16 +251,16 @@ document.getElementById('buttonG').addEventListener("click", function() {showyea
 document.getElementById('buttonH').addEventListener("click", function() {showyear(2016)});
 document.getElementById('buttonI').addEventListener("click", function() {showyear(2017)});
 document.getElementById('buttonJ').addEventListener("click", function() {showyear(2018)});
-//
-//
-//
-// document.getElementById('buttonK').addEventListener("click", visualizeSouthAsia);
-// document.getElementById('buttonL').addEventListener("click", visualizeEurope);
-// document.getElementById('buttonM').addEventListener("click", visualizeMiddleEastNorthAfrica);
-// document.getElementById('buttonN').addEventListener("click", visualizeAfrica);
-// document.getElementById('buttonO').addEventListener("click", visualizeCaribbean);
-// document.getElementById('buttonP').addEventListener("click", visualizeOECD);
-// document.getElementById('buttonQ').addEventListener("click", visualizeeastAsia);
+
+
+
+document.getElementById('buttonK').addEventListener("click", function() {showregion("South Asia")});
+document.getElementById('buttonL').addEventListener("click", function() {showregion("Europe & Central Asia")});
+document.getElementById('buttonM').addEventListener("click", function() {showregion("Middle East & North Africa")});
+document.getElementById('buttonN').addEventListener("click", function() {showregion("Sub-Saharan Africa")});
+document.getElementById('buttonO').addEventListener("click", function() {showregion("Latin America & Caribbean")});
+document.getElementById('buttonP').addEventListener("click", function() {showregion("High income: OECD")});
+document.getElementById('buttonQ').addEventListener("click", function() {showregion("East Asia & Pacific")});
 
 
 
@@ -256,27 +271,54 @@ let previousSection;
 d3.select("#textboxes").on("scroll", function(){
   // the currentBox function is imported on the
   // very fist line of this script
+
   currentBox(function(box){
     console.log(box.id);
-
-    if(box.id=="six" && box.id!=previousSection){
-      console.log("changing viz");
-
-    axis();
-    showyear(2009);
+if (box.id=="one" && box.id!=previousSection){
+  previousSection = box.id;
 
 
+  }else if (box.id=="two" && box.id!=previousSection){
       previousSection = box.id;
-    }else if (box.id=="seven" && box.id!=previousSection){
-      console.log("changing viz");
 
-    // function showregion(europe);
 
+    }else if (box.id=="three" && box.id!=previousSection){
       previousSection = box.id;
-    }
+
+
+          }else if (box.id=="four" && box.id!=previousSection){
+              console.log("the 100 countries");
+              previousSection = box.id;
+
+
+                  }else if (box.id=="five" && box.id!=previousSection){
+                      previousSection = box.id;
+
+
+                          }else if(box.id=="six" && box.id!=previousSection){
+                              console.log("changing viz");
+                              axis();
+                              showyear(2009);
+                              previousSection = box.id;
+
+
+                                    }else if (box.id=="seven" && box.id!=previousSection){
+                                        console.log("changing viz");
+                                        showregion("South Asia");
+                                        previousSection = box.id;
+                                            }
 
   })
 })
+
+
+
+
+
+
+
+
+
 
 
 

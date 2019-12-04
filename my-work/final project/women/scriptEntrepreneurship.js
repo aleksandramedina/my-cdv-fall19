@@ -2,6 +2,7 @@ let w, h;
 let heightRatio = 1;
 let padding = 90;
 let xPadding = 30;
+let currYear = 2009;
 
 let vizEntrepreneurship = d3.select("#visualizationEntrepreneurship")
     .append("svg")
@@ -23,10 +24,50 @@ function gotData(data){
       d.wblindex = d.index;
     })
 
-    // Bind data
-    function keyFunction(d){
-      return d.name;
+// Bind data
+function keyFunction(d){
+    return d.name;
+}
+
+//creating the new array
+
+let sortedByCountryRaw = d3.nest().key(d=>d.name).entries(data);
+console.log(sortedByCountryRaw);
+let sortedByCountry = sortedByCountryRaw.map(function(d){
+
+  let records = d.values.reduce(function(acc, dd){
+    // console.log(dd);
+    acc[String(dd.year)] =
+     {
+      name: dd.name,
+      wblindex: dd.wblindex,
+      income: dd.income,
+      year: dd.year,
+      region: dd.region,
+      assets: dd.assets,
+      children: dd.children,
+      entrepreneurship: dd.entrepreneurship,
+      job: dd.job,
+      marriage: dd.marriage,
+      mobility: dd.mobility,
+      pay: dd.pay,
+      retirement: dd.retirement,
     }
+    return acc
+  }, {})
+
+  return {
+    name: d.key,
+    records: records,
+    x: w/2,
+    y: h/2
+  }
+
+})
+console.log(sortedByCountry);
+
+
+
 
     //x axis
 
@@ -41,113 +82,79 @@ function gotData(data){
       xAxisGroup.call(xAxis);
 
 
-    function getColor(d,i){
-      if (d.income == "Low income"){
-        return ("#f2e4e0")
-      }else if (d.income == "Upper middle income" || d.income == "Lower middle income"){
-        return ("#f6b89e")
-      }else if (d.income == "High income"){
-        return ("#ff5f56")
+      function getColor(d){
+
+        if (d.records[2018].income == "Low income"){
+          return ("#f2e4e0")
+        }else if (d.records[2018].income == "Upper middle income" || d.records[2018].income == "Lower middle income"){
+          return ("#f6b89e")
+        }else if (d.records[2018].income == "High income"){
+          return ("#ff5f56")
       }
-    }
+      }
     // //preliminary functions
 
-    function getAssets(d,i){
-      return xScale(d.assets);
-    }
+    let infoText = vizEntrepreneurship.append("text")
+    .attr("x", w/2)
+    .attr("y", 150)
+    .attr("text-anchor", "middle")
+    .attr("fill", "white")
+    ;
 
-    let year2010 = data.filter(function(d){return d.year==2010})
+let graphGroup = vizEntrepreneurship.append("g").classed("graphGroup", true);
+let theSituation = graphGroup.selectAll(".datapoint").data(sortedByCountry, keyFunction);
+let enteringElements = theSituation.enter();
+let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+  .attr("transform", function(d){
+    return "translate("+d.x+", "+d.y+")"
+  })
+  .on("mouseover", function(d, i){
+    let element = d3.select(this);
+    element.select("circle").attr("stroke", "yellow");
+    // infoText.text(d.name + ", " + d.records[currYear].assets);
+    infoText.text(d.name + ", ")
+})
+  .on("mouseout", function(){
+    let element = d3.select(this);
+    element.select("circle").attr("stroke", "none");
+    infoText.text("");
 
-        year2010.forEach(d=>{
-          d.x = xScale(d.assets); //initial x
-          d.y = h/2; // initial y
-          console.log("the initial d3 simulation is working");
-        });
-        d3.forceSimulation(year2010).force('collide', d3.forceCollide(10)); // simulation changes x and y
-
-        // let simulation = d3.forceSimulation(year2010)
-        //     .force("forceX", d3.forceX(function(d){
-        //       console.log(d.assets);
-        //       return xScale(d.assets)
-        //     }))
-        //     .force("forceY", d3.forceY(h/2))
-        //     .force("collide", d3.forceCollide(3))
-        // ;
-
-        let graphGroup = vizEntrepreneurship.append("g").classed("graphGroup", true);
-
-                  function assets2010 (){
-
-                    let theSituation = graphGroup.selectAll(".datapoint").data(year2010, keyFunction);
-                    console.log("visualize 2010 is working");
-                    console.log ("the NEW full situation: ", theSituation);
-
-                    let enteringElements = theSituation.enter();
-                    let enteringGroups = enteringElements.append("g").classed("datapoint", true)
-                      .attr("transform", function(d){
-                        return "translate("+d.x+", "+d.y+")"
-                      })
-                    ;
-                    //append a circle to new g
-                    enteringGroups.append("circle")
-                        .attr("r", 5)
-                        .attr("fill", getColor)
-                      ;
-
-                    theSituation.transition()
-                      .attr("transform", function(d){
-                        return "translate("+d.x+", "+d.y+")"
-                      })
-                    ;
-
-                    let infoText = vizEntrepreneurship.append("text")
-                    .attr("x", w/2)
-                    .attr("y", 150)
-                    .attr("text-anchor", "middle")
-                    .attr("fill", "white")
-                    ;
-
-                    theSituation
-                      .on("mouseover", function(d, i){
-                        let element = d3.select(this);
-                        element.select("circle").attr("stroke", "yellow");
-                        infoText.text(d.name + ", " + d.assets);
-
-                    })
-                      .on("mouseout", function(){
-                        let element = d3.select(this);
-                        element.select("circle").attr("stroke", "none");
-                        infoText.text("");
-
-                      })
+})
+;
+//append a circle to new g
+enteringGroups.append("circle")
+    .attr("r", 5)
+    .attr("fill", getColor)
+  ;
 
 
-                      enteringGroups
-                        .on("mouseover", function(d, i){
-                          let element = d3.select(this);
-                          element.select("circle").attr("stroke", "yellow");
-                          infoText.text(d.name + ", " + d.assets);
+function updatePositionsAndColor(){
+  graphGroup.selectAll(".datapoint")
+    .attr("transform", function(d){
+      return "translate("+d.x+", "+d.y+")"
+    })
+    .attr("fill", getColor)
+  ;
+}
 
-                      })
-                        .on("mouseout", function(){
-                          let element = d3.select(this);
-                          element.select("circle").attr("stroke", "none");
-                          infoText.text("");
+function showentrepreneurship(year){
 
-                        })
+  currYear = year;
 
-
-                    let exitingElements = theSituation.exit();
-                    exitingElements.remove();
-                  }
-
-assets2010();
+  d3.forceSimulation(sortedByCountry)
+    .force('collide', d3.forceCollide(7))
+    .force("forceX", d3.forceX(function(d){
+      return xScale(d.records[2009].entrepreneurship);
+    }))
+    .force("forceY", d3.forceY(h/2))
+    .on("tick", updatePositionsAndColor)
+  ;
+  console.log(year + "the button for year has been clicked");
+}
 
 
 
-
-
-
+showentrepreneurship();
 
 
 
@@ -170,7 +177,7 @@ function adjustVizHeight(){
     h = w*heightRatio;
     return h;
   })
-}s
+}
 function resized(){
   adjustVizHeight()
 }
