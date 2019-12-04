@@ -14,7 +14,7 @@ let xPadding = 30;
 
 let viz = d3.select("#visualization")
     .append("svg")
-  .style("background-color", "black")
+  .style("background-color", "darkgrey")
 ;
 // function to adjust viz height dynamically
 // in order to keep the heightRatio at any given

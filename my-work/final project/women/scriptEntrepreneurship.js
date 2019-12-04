@@ -1,20 +1,16 @@
-let w, h;
+let w = 1200;
+let h = 600;
 let heightRatio = 1;
 let padding = 90;
-let xPadding = 30;
+let xPadding = 200;
 let currYear = 2009;
 
 let vizEntrepreneurship = d3.select("#visualizationEntrepreneurship")
     .append("svg")
     .style("background-color", "black")
+    .attr("width", 1200)
+    .attr("height", 600)
 ;
-
-adjustVizHeight();
-// function to adjust viz height dynamically
-// in order to keep the heightRatio at any given
-// width of the browser window
-// (function definition at the bottom)
-
 
 // your script starts here, e.g. load data here.
 
@@ -137,19 +133,30 @@ function updatePositionsAndColor(){
   ;
 }
 
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+
 function showentrepreneurship(year){
 
-  currYear = year;
+  currYear = slider.value;
+  output.innerHTML = slider.value;
+
+console.log("this is output value" + output);
+
+  slider.oninput = function() {
+    output.innerHTML = this.value;
+  }
+  console.log("the slider value is" + slider.value);
 
   d3.forceSimulation(sortedByCountry)
     .force('collide', d3.forceCollide(7))
     .force("forceX", d3.forceX(function(d){
-      return xScale(d.records[2009].entrepreneurship);
+      return xScale(d.records[currYear].entrepreneurship);
+      console.log("the current year is" + currYear);
     }))
     .force("forceY", d3.forceY(h/2))
     .on("tick", updatePositionsAndColor)
   ;
-  console.log(year + "the button for year has been clicked");
 }
 
 
@@ -167,18 +174,3 @@ showentrepreneurship();
 
   }
 d3.json("data.json").then(gotData);
-
-// function to adjust viz height dynamically
-// in order to keep the heightRatio at any given
-// width of the browser window
-function adjustVizHeight(){
-  vizEntrepreneurship.style("height", function(){
-    w = parseInt(vizEntrepreneurship.style("width"), 10);
-    h = w*heightRatio;
-    return h;
-  })
-}
-function resized(){
-  adjustVizHeight()
-}
-window.addEventListener("resize", resized);

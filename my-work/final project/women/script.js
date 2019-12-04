@@ -185,31 +185,12 @@ let currRegion = region;
     .force('collide', d3.forceCollide(7))
     .force("forceX", d3.forceX(function(d){
         if (d.records[2018].region == currRegion){return xScale(d.records[2018].wblindex);
-        }else {return -400};}
+        }else {return -300};}
     ))
     .force("forceY", d3.forceY(h/2))
     .on("tick", updatePositionsAndColor)
 }
 
-
-// function showregion(region){
-//   d3.forceSimulation(sortedByCountry)
-//     .force('collide', d3.forceCollide(7))
-//     .force("forceX", d3.forceX(function(d){
-//       // look for x location based on region
-//       console.log(d)
-//       console.log("looking for x give " + region)
-//       // if (d.records[2018].region == region){
-//       // return xScale(d.records[2018].wblindex);
-//       // console.log (xScale(d.records[2018].wblindex);
-//       //   }else {return -200}
-//       //     ))
-//   })
-//     .force("forceY", d3.forceY(h/2))
-//     .on("tick", updatePositionsAndColor)
-//   ;
-//   console.log(year + "the button for region has been clicked");
-// }
 
 // showyear(2009);
 // setTimeout(function(){
@@ -274,9 +255,8 @@ d3.select("#textboxes").on("scroll", function(){
 
   currentBox(function(box){
     console.log(box.id);
-if (box.id=="one" && box.id!=previousSection){
+if (box.id=="zero" && box.id!=previousSection){
   previousSection = box.id;
-
 
   }else if (box.id=="two" && box.id!=previousSection){
       previousSection = box.id;
