@@ -4,6 +4,7 @@ let w, h;
 let heightRatio = 1;
 let padding = 90;
 let xPadding = 30;
+let currYear = 2009;
 
 let viz = d3.select("#visualization")
     .append("svg")
@@ -95,7 +96,11 @@ function getIndex(d,i){
 }
 
 function getColor(d){
-
+// if (d.name == "Mauritius"){
+//   return "blue"
+// }else {
+//   return "gray"
+// }
   if (d.records[2018].income == "Low income"){
     return ("#f2e4e0")
   }else if (d.records[2018].income == "Upper middle income" || d.records[2018].income == "Lower middle income"){
@@ -134,7 +139,8 @@ let enteringGroups = enteringElements.append("g").classed("datapoint", true)
   .on("mouseover", function(d, i){
     let element = d3.select(this);
     element.select("circle").attr("stroke", "yellow");
-    infoText.text(d.name + ", " + d.records[2009].wblindex);
+    infoText.text(d.name + ", " + d.records[currYear].wblindex);
+    //infoText.text(d.name + ", " + d.wblindex);
 })
   .on("mouseout", function(){
     let element = d3.select(this);
@@ -160,10 +166,14 @@ function updatePositionsAndColor(){
 }
 
 function showyear(year){
+
+  currYear = year;
+
   d3.forceSimulation(sortedByCountry)
     .force('collide', d3.forceCollide(7))
     .force("forceX", d3.forceX(function(d){
-      return xScale(d.records[2009].wblindex);
+      console.log(d.records[year].wblindex);
+      return xScale(d.records[year].wblindex);
     }))
     .force("forceY", d3.forceY(h/2))
     .on("tick", updatePositionsAndColor)
@@ -171,8 +181,10 @@ function showyear(year){
   console.log(year + "the button for year has been clicked");
 }
 
+let sortedregion = sortedByCountry.filter(function(d){return d.records[2018].region})
+console.log(sortedregion);
 
-function showregion(region){
+function showregion(sortedregion){
   d3.forceSimulation(sortedByCountry)
     .force('collide', d3.forceCollide(7))
     .force("forceX", d3.forceX(function(d){
@@ -214,16 +226,16 @@ function showregion(region){
 // }, 10000)
 
 
-document.getElementById('buttonA').addEventListener("click", showyear(2009));
-document.getElementById('buttonB').addEventListener("click", showyear(2010));
-document.getElementById('buttonC').addEventListener("click", showyear(2011));
-document.getElementById('buttonD').addEventListener("click", showyear(2012));
-document.getElementById('buttonE').addEventListener("click", showyear(2013));
-document.getElementById('buttonF').addEventListener("click", showyear(2014));
-document.getElementById('buttonG').addEventListener("click", showyear(2015));
-document.getElementById('buttonH').addEventListener("click", showyear(2016));
-document.getElementById('buttonI').addEventListener("click", showyear(2017));
-document.getElementById('buttonJ').addEventListener("click", showyear(2018));
+document.getElementById('buttonA').addEventListener("click", function() {showyear(2009)});
+document.getElementById('buttonB').addEventListener("click", function() {showyear(2010)});
+document.getElementById('buttonC').addEventListener("click", function() {showyear(2011)});
+document.getElementById('buttonD').addEventListener("click", function() {showyear(2012)});
+document.getElementById('buttonE').addEventListener("click", function() {showyear(2013)});
+document.getElementById('buttonF').addEventListener("click", function() {showyear(2014)});
+document.getElementById('buttonG').addEventListener("click", function() {showyear(2015)});
+document.getElementById('buttonH').addEventListener("click", function() {showyear(2016)});
+document.getElementById('buttonI').addEventListener("click", function() {showyear(2017)});
+document.getElementById('buttonJ').addEventListener("click", function() {showyear(2018)});
 //
 //
 //
@@ -258,7 +270,7 @@ d3.select("#textboxes").on("scroll", function(){
     }else if (box.id=="seven" && box.id!=previousSection){
       console.log("changing viz");
 
-    // function showregion("Europe");
+    // function showregion(europe);
 
       previousSection = box.id;
     }
