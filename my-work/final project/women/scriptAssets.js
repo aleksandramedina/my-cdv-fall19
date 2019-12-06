@@ -107,8 +107,7 @@ let enteringGroups = enteringElements.append("g").classed("datapoint", true)
   .on("mouseover", function(d, i){
     let element = d3.select(this);
     element.select("circle").attr("stroke", "yellow");
-    // infoText.text(d.name + ", " + d.records[currYear].assets);
-    infoText.text(d.name + ", ")
+    infoText.text(d.name + ", " + d.records[currYear].assets);
 })
   .on("mouseout", function(){
     let element = d3.select(this);
@@ -162,7 +161,13 @@ console.log("this is output value" + output);
 
 
 
-showassets();
+showassets(2009);
+
+document.getElementById("myRange").addEventListener("change", function(e) {
+  console.log(e.target.value);
+  showassets(e.target.value);
+
+});
 
 
 

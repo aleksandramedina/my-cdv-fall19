@@ -3,9 +3,12 @@ body{
   margin:0;
   font-family: 'Hiragino Kaku Gothic Pro';
   font-size: 14px;
+  /* background-color: white !important */
 }
+
 #wrapper{
   display: flex;
+  /* background-color: white !important; */
 }
 #visualization {
   position: sticky;
@@ -180,9 +183,9 @@ body{
   margin-left: 75px;
 }
 
-img {
+/* img {
   padding: 20px 20px 20px 20px;
-}
+} */
 
 .xaxis text{
   color: white;
@@ -224,37 +227,9 @@ img {
   cursor: pointer;
 }
 
-
-/* alternative */
-/* starting point for responsive mobile design */
-/*
-body{
-  margin:0;
+#theyear{
+  padding-left: 30px;
+  padding-bottom: 10px;
+  font-family: 'Hiragino Kaku Gothic Pro';
+  font-size: 25px;
 }
-
-
-#wrapper{
-  display: flex;
-  flex-direction: column;
-}
-#visualization {
-  position: sticky;
-  top: 0vh;
-  height: 50vh;
-  width: 100%;
-  background-color: black;
-}
-#visualization svg{
-  width: 100%;
-}
-
-#textboxes {
-  width: 100%;
-  border: red 1px solid;
-  height: 50vh;
-  overflow: scroll;
-}
-
-.box {
-  margin-bottom: 60vh;
-} */

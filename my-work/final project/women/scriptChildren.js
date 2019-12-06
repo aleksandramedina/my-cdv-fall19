@@ -107,8 +107,7 @@ let enteringGroups = enteringElements.append("g").classed("datapoint", true)
   .on("mouseover", function(d, i){
     let element = d3.select(this);
     element.select("circle").attr("stroke", "yellow");
-    // infoText.text(d.name + ", " + d.records[currYear].wblindex);
-    infoText.text(d.name + ", ");
+    infoText.text(d.name + ", " + d.records[currYear].children);
 })
   .on("mouseout", function(){
     let element = d3.select(this);
@@ -161,9 +160,12 @@ console.log("the slider value is" + slider.value);
 
 
 
-showchildren();
+showchildren(2009);
 
-
+document.getElementById("myRange").addEventListener("change", function(e){
+  console.log(e.target.value);
+  showchildren(e.target.value);
+});
 
 
 
