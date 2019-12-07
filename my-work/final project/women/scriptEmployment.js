@@ -32,7 +32,6 @@ console.log(sortedByCountryRaw);
 let sortedByCountry = sortedByCountryRaw.map(function(d){
 
   let records = d.values.reduce(function(acc, dd){
-    // console.log(dd);
     acc[String(dd.year)] =
      {
       name: dd.name,

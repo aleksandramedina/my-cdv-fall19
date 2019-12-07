@@ -3,17 +3,13 @@ body{
   margin:0;
   font-family: 'Hiragino Kaku Gothic Pro';
   font-size: 14px;
-  /* background-color: white !important */
 }
 
 #wrapper{
   display: flex;
-  /* background-color: white !important; */
 }
 #visualization {
   position: sticky;
-  /* top: 10vh; */
-  /* height: 80vh; */
   width: 50%;
   background-color: black;
 }
@@ -109,7 +105,6 @@ body{
   color: black;
   border: none;
   text-align: center;
-  /* display: flex; */
 
 }
 
@@ -119,15 +114,10 @@ body{
   border: 1px solid #000000;
   margin: 25px;
   padding: 0px 10px;
-  /* float: left; */
 }
 
-/* .button:active {
-  background-color: #ff0000; /* Red */
-
-
 .button:active {
-  background: #ff0000; /* Red */
+  background: #ff0000;
 }
 
 
@@ -182,10 +172,6 @@ body{
   margin-top: 100px;
   margin-left: 75px;
 }
-
-/* img {
-  padding: 20px 20px 20px 20px;
-} */
 
 .xaxis text{
   color: white;

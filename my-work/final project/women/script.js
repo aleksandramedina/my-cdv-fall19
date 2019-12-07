@@ -18,7 +18,6 @@ let map = viz.append("g").attr("class", "mapholder");
 let map2 = viz.append("g").attr("class", "mapholder2");
 let graphGroup = viz.append("g").classed("graphGroup", true);
 let imgs = viz.append("g").attr("class", "imagegroup");
-// .append("g").attr("class", "imageholder");
 let txt = viz.append("g").attr("class", "textholder");
 
 
@@ -35,7 +34,6 @@ function gotData(data){
     let sortedByCountry = sortedByCountryRaw.map(function(d){
 
       let records = d.values.reduce(function(acc, dd){
-        // console.log(dd);
         acc[String(dd.year)] =
          {
           name: dd.name,
@@ -117,29 +115,29 @@ let infoText = viz.append("text")
 ;
 
 function SituationRoom() {
-let theSituation = graphGroup.selectAll(".datapoint").data(sortedByCountry, keyFunction);
-let enteringElements = theSituation.enter();
-let enteringGroups = enteringElements.append("g").classed("datapoint", true)
-  .attr("transform", function(d){
-    return "translate("+d.x+", "+d.y+")"
-  })
-  .on("mouseover", function(d, i){
-    let element = d3.select(this);
-    element.select("circle").attr("stroke", "yellow");
-    infoText.text(d.name + ", " + d.records[currYear].wblindex);
-})
-  .on("mouseout", function(){
-    let element = d3.select(this);
-    element.select("circle").attr("stroke", "none");
-    infoText.text("");
+        let theSituation = graphGroup.selectAll(".datapoint").data(sortedByCountry, keyFunction);
+        let enteringElements = theSituation.enter();
+        let enteringGroups = enteringElements.append("g").classed("datapoint", true)
+          .attr("transform", function(d){
+            return "translate("+d.x+", "+d.y+")"
+          })
+          .on("mouseover", function(d, i){
+            let element = d3.select(this);
+            element.select("circle").attr("stroke", "yellow");
+            infoText.text(d.name + ", " + d.records[currYear].wblindex);
+        })
+          .on("mouseout", function(){
+            let element = d3.select(this);
+            element.select("circle").attr("stroke", "none");
+            infoText.text("");
 
-})
-;
-//append a circle to new g
-enteringGroups.append("circle")
-    .attr("r", 5)
-    .attr("fill", getColor)
-  ;
+        })
+        ;
+        //append a circle to new g
+        enteringGroups.append("circle")
+            .attr("r", 5)
+            .attr("fill", getColor)
+          ;
 }
 
 function updatePositionsAndColor(){
@@ -153,15 +151,6 @@ function updatePositionsAndColor(){
 
 function showyear(year){
   SituationRoom()
-
-  txt.selectAll("text")
-    .attr("transform", "translate (0, -1000)")
-    ;
-
-  map2.selectAll("path")
-    .attr("transform", "translate (0, -1000)")
-    ;
-
   currYear = year;
 
   d3.forceSimulation(sortedByCountry)
@@ -178,7 +167,7 @@ function showyear(year){
 
 function showregion(region){
   SituationRoom()
-let currRegion = region;
+  let currRegion = region;
 
   d3.forceSimulation(sortedByCountry)
     .force('collide', d3.forceCollide(7))
@@ -218,87 +207,72 @@ document.getElementById('buttonQ').addEventListener("click", function() {showreg
 // you might move this block into the part of your code
 // in which your data is loaded/available
 let previousSection;
-d3.select("#textboxes").on("scroll", function(){
-  // let map = viz.append("g").attr("class", "mapholder");
-  // let map2 = viz.append("g").attr("class", "mapholder");
-  // let graphGroup = viz.append("g").classed("graphGroup", true);
-  // let imgs = d3.select("#visualization")
-  // // .append("g").attr("class", "imageholder");
-  // let txt = viz.append("g").attr("class", "textholder");
+    d3.select("#textboxes").on("scroll", function(){
 
-  // the currentBox function is imported on the
-  // very fist line of this script
-
-  currentBox(function(box){
+    currentBox(function(box){
     console.log(box.id);
-if (box.id=="zero" && box.id!=previousSection){
-  previousSection = box.id;
-  // d3.select(".mapholder").selectAll("*").remove();
-  d3.select(".mapholder2").selectAll("*").remove();
-  d3.select(".graphGroup").selectAll("*").remove();
-  d3.select(".xaxis").selectAll("*").remove();
-  d3.select(".textholder").selectAll("*").remove();
-  d3.select("#visualization").selectAll("image").remove();
-  world();
-
-  }else if (box.id=="two" && box.id!=previousSection){
+    if (box.id=="zero" && box.id!=previousSection){
       previousSection = box.id;
-      // d3.select(".mapholder").selectAll("*").remove();
       d3.select(".mapholder2").selectAll("*").remove();
-      d3.select(".xaxis").selectAll("*").remove();
       d3.select(".graphGroup").selectAll("*").remove();
+      d3.select(".xaxis").selectAll("*").remove();
       d3.select(".textholder").selectAll("*").remove();
       d3.select("#visualization").selectAll("image").remove();
+      world();
 
-    }else if (box.id=="three" && box.id!=previousSection){
-      d3.select(".mapholder").selectAll("*").remove();
-      d3.select(".mapholder2").selectAll("*").remove();
-      previousSection = box.id;
-      showimage();
+      }else if (box.id=="two" && box.id!=previousSection){
+          previousSection = box.id;
+          d3.select(".mapholder2").selectAll("*").remove();
+          d3.select(".xaxis").selectAll("*").remove();
+          d3.select(".graphGroup").selectAll("*").remove();
+          d3.select(".textholder").selectAll("*").remove();
+          d3.select("#visualization").selectAll("image").remove();
 
-          }else if (box.id=="four" && box.id!=previousSection){
-            // d3.select(".mapholder2").selectAll("*").remove();
-            d3.select(".mapholder").selectAll("*").remove();
-            d3.select(".graphGroup").selectAll("*").remove();
-            d3.select(".xaxis").selectAll("*").remove();
-            d3.select(".textholder").selectAll("*").remove();
-            d3.select("#visualization").selectAll("image").remove();
-              console.log("the 100 countries");
-              previousSection = box.id;
-              sixcountries();
+        }else if (box.id=="three" && box.id!=previousSection){
+          d3.select(".mapholder").selectAll("*").remove();
+          d3.select(".mapholder2").selectAll("*").remove();
+          previousSection = box.id;
+          showimage();
 
-                  }else if (box.id=="five" && box.id!=previousSection){
-                    d3.select(".graphGroup").selectAll("*").remove();
-                    d3.select(".xaxis").selectAll("*").remove();
-                    d3.select("#visualization").selectAll("image").remove();
-                    d3.select(".mapholder").selectAll("*").remove();
-                    d3.select(".mapholder2").selectAll("*").remove();
-                    // d3.select(".textholder").selectAll("*").remove();
-                      previousSection = box.id;
-                      showtext();
+              }else if (box.id=="four" && box.id!=previousSection){
+                d3.select(".mapholder").selectAll("*").remove();
+                d3.select(".graphGroup").selectAll("*").remove();
+                d3.select(".xaxis").selectAll("*").remove();
+                d3.select(".textholder").selectAll("*").remove();
+                d3.select("#visualization").selectAll("image").remove();
+                  console.log("the 100 countries");
+                  previousSection = box.id;
+                  sixcountries();
 
-                          }else if(box.id=="six" && box.id!=previousSection){
-                              console.log("changing viz");
-                              axis();
-                              showyear(2009);
-                              previousSection = box.id;
-                              d3.select(".mapholder").selectAll("*").remove();
-                              d3.select(".mapholder2").selectAll("*").remove();
-                              // d3.select(".graphGroup").selectAll("*").remove();
-                              d3.select(".textholder").selectAll("*").remove();
-                              d3.select("#visualization").selectAll("image").remove();
+                      }else if (box.id=="five" && box.id!=previousSection){
+                        d3.select(".graphGroup").selectAll("*").remove();
+                        d3.select(".xaxis").selectAll("*").remove();
+                        d3.select("#visualization").selectAll("image").remove();
+                        d3.select(".mapholder").selectAll("*").remove();
+                        d3.select(".mapholder2").selectAll("*").remove();
+                          previousSection = box.id;
+                          showtext();
+
+                              }else if(box.id=="six" && box.id!=previousSection){
+                                  console.log("changing viz");
+                                  axis();
+                                  showyear(2009);
+                                  previousSection = box.id;
+                                  d3.select(".mapholder").selectAll("*").remove();
+                                  d3.select(".mapholder2").selectAll("*").remove();
+                                  d3.select(".textholder").selectAll("*").remove();
+                                  d3.select("#visualization").selectAll("image").remove();
 
 
-                                    }else if (box.id=="seven" && box.id!=previousSection){
-                                        axis();
-                                        showregion("South Asia");
-                                        previousSection = box.id;
-                                        d3.select(".mapholder").selectAll("*").remove();
-                                        d3.select(".mapholder2").selectAll("*").remove();
-                                        // d3.select(".graphGroup").selectAll("*").remove();
-                                        d3.select(".textholder").selectAll("*").remove();
-                                        d3.select("#visualization").selectAll("image").remove();
-                                            }
+                                        }else if (box.id=="seven" && box.id!=previousSection){
+                                            axis();
+                                            showregion("South Asia");
+                                            previousSection = box.id;
+                                            d3.select(".mapholder").selectAll("*").remove();
+                                            d3.select(".mapholder2").selectAll("*").remove();
+                                            d3.select(".textholder").selectAll("*").remove();
+                                            d3.select("#visualization").selectAll("image").remove();
+                                                }
 
   })
 })
@@ -336,20 +310,12 @@ world();
 
 function showimage(){
   let image_array = ["business.png", "children.png","employment.png","house.png","marriage.png","movement.png","pay.png","retirement.png"]
-  map.selectAll("path")
-    .attr("transform", "translate (0, -1000)")
-    ;
 
     viz.selectAll('image')
         .data(image_array)
         .enter()
-        // .append("div")
-        // .attr("class", function(d, i) {return i})
-        // .attr("left", "500px")
-        // .attr("top", "500px")
         .append("svg:image")
         .attr("xlink:href", function(d) {return d})
-        // .attr("src", function(d) {return d})
         .attr("x", function(d,i) {if (i>3){
                         return (i-4) * 220
                           } else {
@@ -370,9 +336,6 @@ function showimage(){
 
 function sixcountries(){
 
-          map.selectAll("path")
-            .attr("transform", "translate (0, -1000)")
-            ;
           // // IMPORT DATA
           d3.json("sixcountries.geojson").then(function(geoData){
           //
@@ -399,10 +362,6 @@ function sixcountries(){
 
 
 function showtext(){
-
-  map2.selectAll("path")
-    .attr("transform", "translate (0, -1000)")
-    ;
 
   txt.append("text")
       .text("74.71")
