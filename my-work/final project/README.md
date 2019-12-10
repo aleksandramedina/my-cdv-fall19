@@ -7,7 +7,7 @@ I chose to build a website that visualizes the WBL Index compiled each year by t
 On my website I have chosen to visualize the overall change in how the law treats women around the world in the last 10 years. My visualizations include:
 <ol>
 <li>a graph showing the <b>wbl index</b> of all the countries of the world, filtering them by their relative income group (low-income, middle-income, high-income) and the year (2009-2018),</li>
-<img src="screenshot1.jpg">
+<img src="screenshot1.jpg"></img>
 <li>a graph showing the <b>wbl index</b> of all the countries in the world in 2018, but letting the user filter them by region (South Asia, Europe and Central Asia, Middle East and North Africa, sub-saharan Africa, Latin America and Caribbean, High Income OECD, East Asia and Pacific)</li>
 <img src="screenshot2.jpg">
 <li>on separate pages, all the countries of the world are displayed by the 8 different categories (going places, starting a job, getting paid, getting married, having children, running a business, managing assets, getting a pension) and letting the user filter through the years</li>
